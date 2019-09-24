@@ -1,0 +1,5 @@
+01) npm install -g react-native-cli
+02) react-native run-android
+03) Edit screen folder
+04) dist(Distributor screens)
+05) salesrep(Salesrep screens)
