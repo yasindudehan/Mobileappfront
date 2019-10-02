@@ -14,36 +14,62 @@ import {
   Text,
   Tabs,
   Tab,
+  CardItem,
+  Card,
 } from 'native-base';
 export default class StockBalanceScreen extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'Stock Balance',
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#0398fc',
-      },
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.navigate('App')}>
-          <Image
-            source={require('../Image/back3.png')}
-            style={{width: 40, height: 30}}
-          />
-        </TouchableOpacity>
-      ),
-    };
-  };
   render() {
     return (
-      <View>
-        <Text>Stock Blance</Text>
-      </View>
+      <Container style={styles.container}>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance1</Text>
+            </CardItem>
+          </Card>
+        </Content>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance2</Text>
+            </CardItem>
+          </Card>
+        </Content>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance3</Text>
+            </CardItem>
+          </Card>
+        </Content>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance4</Text>
+            </CardItem>
+          </Card>
+        </Content>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance5</Text>
+            </CardItem>
+          </Card>
+        </Content>
+        <Content>
+          <Card>
+            <CardItem>
+              <Text>Stock Balance6</Text>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
     );
   }
 }
 const styles = (StyleSheet.stockBalance = {
   container: {
     flex: 1,
-    backgroundColor: '#6c81a3',
+    backgroundColor: '#2bbbad',
   },
 });

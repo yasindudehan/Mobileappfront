@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Image,
+  StatusBar,
 } from 'react-native';
 import Tab1 from './Profile';
 import Tab2 from './AddOrder';
@@ -24,6 +25,9 @@ import {
   Tabs,
   Tab,
   Title,
+  CardItem,
+  Card,
+  TabHeading,
 } from 'native-base';
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -31,28 +35,55 @@ export default class HomeScreen extends Component {
   };
   render() {
     return (
-      <Container>
-        <Header>
-          <Left />
+      <Container style={{backgroundColor: '#2bbbad'}}>
+        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+        <Header style={{backgroundColor: '#124d04'}}>
           <Body>
-            <Title>HOME</Title>
+            <Title>Company Name</Title>
           </Body>
-          <Right />
         </Header>
         <Tabs>
-          <Tab heading="PROFILE">
-            <View style={styles.container}>
-              <Text>Sales rep Home Screen</Text>
-              <TouchableOpacity onPress={this.logOut} style={styles.button1}>
-                <Text>LOGOUT</Text>
-              </TouchableOpacity>
-            </View>
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: '#124d04'}}>
+                <Text>PROFILE</Text>
+              </TabHeading>
+            }>
             <Tab1 />
+            <View style={styles.container}>
+              <Text>Profile Screen</Text>
+
+              <Card style={{width: 300}}>
+                <CardItem>
+                  <Body>
+                    <Left>
+                      <Text style={styles.logoutText}>Log Out</Text>
+                    </Left>
+                  </Body>
+                  <Body>
+                    <Button iconRight onPress={this.logOut}>
+                      <Text>logout</Text>
+                      <Icon name="person" />
+                    </Button>
+                  </Body>
+                </CardItem>
+              </Card>
+            </View>
           </Tab>
-          <Tab heading="ADDORDER">
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: '#124d04'}}>
+                <Text>ADD ORDER</Text>
+              </TabHeading>
+            }>
             <Tab2 />
           </Tab>
-          <Tab heading="STOCKBLANCE">
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: '#124d04'}}>
+                <Text>STOCK BALANCE</Text>
+              </TabHeading>
+            }>
             <Tab3 />
           </Tab>
         </Tabs>
@@ -63,37 +94,28 @@ export default class HomeScreen extends Component {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };
-  goProfile = () => {
-    this.props.navigation.navigate('ProfileS');
-  };
-  addOrder = () => {
-    this.props.navigation.navigate('OrderS');
-  };
-  stockBalance = () => {
-    this.props.navigation.navigate('BalanceStock');
-  };
 }
-
 const styles = (StyleSheet.home = {
   container: {
     flex: 1,
-    backgroundColor: '#6c81a3',
+    backgroundColor: '#2bbbad',
   },
   flexd: {
     flexDirection: 'row',
   },
-  button1: {
-    //justifyContent:'center',
-    width: 100,
-    height: 50,
-    backgroundColor: 'blue',
-  },
+
   button2: {
     width: 50,
     height: 50,
     margin: 10,
     backgroundColor: 'blue',
     borderRadius: 100,
+  },
+  button1: {
+    //justifyContent:'center',
+    width: 70,
+    height: 70,
+    // backgroundColor: 'blue',
   },
   button2Text: {
     textAlign: 'center',
@@ -116,5 +138,8 @@ const styles = (StyleSheet.home = {
   logo: {
     width: 70,
     height: 70,
+  },
+  logoutText: {
+    fontSize: 30,
   },
 });
