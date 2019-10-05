@@ -26,6 +26,7 @@ export default class SelectRoute extends React.Component {
     super(props);
     this.state = {
       selected: 'k',
+      valueselected: false,
     };
   }
   onValueChange(value: string) {

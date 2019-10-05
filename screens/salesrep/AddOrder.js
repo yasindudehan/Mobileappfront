@@ -26,6 +26,7 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 
 import NewOrderScreen1 from './SelectRouteAndCustomer';
 import SalesInvoice from './SalesInvoice';
+import Signature from './Signature';
 class OrderScreenS extends React.Component {
   static navigationOptions = {
     header: null,
@@ -97,6 +98,7 @@ const MainNavigator = createStackNavigator({
   Home: {screen: OrderScreenS},
   Route: {screen: NewOrderScreen1},
   SalesInvoice: {screen: SalesInvoice},
+  Signature: {screen: Signature},
 });
 
 const App = createAppContainer(MainNavigator);

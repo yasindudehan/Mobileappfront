@@ -18,6 +18,7 @@ import {
   Left,
   Form,
 } from 'native-base';
+import SignatureCapture from 'react-native-signature-capture';
 import Date from './Date';
 // create a component
 class SalesInvoice extends Component {
@@ -25,11 +26,17 @@ class SalesInvoice extends Component {
     super(props);
     this.state = {
       selected: '0',
+      billpaid: 'not paid',
     };
   }
   onValueChange(value: string) {
     this.setState({
       selected: value,
+    });
+  }
+  onPaid(value: string) {
+    this.setState({
+      billpaid: value,
     });
   }
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
@@ -168,10 +175,34 @@ class SalesInvoice extends Component {
                 </CardItem>
               </Card>
             </Content>
+            <Card>
+              <CardItem>
+                <Body>
+                  <Picker
+                    note={true}
+                    mode="dropdown"
+                    style={{
+                      width: 400,
+                      marginBottom: 20,
+                      height: 22,
+                      padding: 0,
+                      fontSize: 40,
+                      fontFamily: 'Cochin',
+                      fontWeight: 'bold',
+                    }}
+                    selectedValue={this.state.billpaid}
+                    onValueChange={this.onPaid.bind(this)}>
+                    <Picker.Item label="Paid" value="paid" />
+                    <Picker.Item label="Not Paid" value="not paid" />
+                  </Picker>
+                </Body>
+              </CardItem>
+            </Card>
           </Card>
         </Content>
 
         <TouchableOpacity
+          onPress={this.nextPage}
           style={{
             backgroundColor: '#58eb34',
             margin: 20,
@@ -195,6 +226,9 @@ class SalesInvoice extends Component {
       </Container>
     );
   }
+  nextPage = () => {
+    this.props.navigation.navigate('Signature');
+  };
 }
 
 // define your styles

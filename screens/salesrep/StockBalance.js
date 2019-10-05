@@ -21,42 +21,42 @@ export default class StockBalanceScreen extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance1</Text>
             </CardItem>
           </Card>
         </Content>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance2</Text>
             </CardItem>
           </Card>
         </Content>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance3</Text>
             </CardItem>
           </Card>
         </Content>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance4</Text>
             </CardItem>
           </Card>
         </Content>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance5</Text>
             </CardItem>
           </Card>
         </Content>
-        <Content>
+        <Content padder>
           <Card>
             <CardItem>
               <Text>Stock Balance6</Text>

@@ -39,7 +39,12 @@ export default class HomeScreen extends Component {
         <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
         <Header style={{backgroundColor: '#124d04'}}>
           <Body>
-            <Title>Company Name</Title>
+            <Right>
+              <Image
+                source={require('../Image/logo3.png')}
+                style={{width: 150, height: 50}}
+              />
+            </Right>
           </Body>
         </Header>
         <Tabs>
