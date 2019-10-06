@@ -1,27 +1,19 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  AsyncStorage,
+  StatusBar,
+} from 'react-native';
 
 export default class ProfileScreenS extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'Profile',
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#0398fc',
-      },
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.navigate('App')}>
-          <Image
-            source={require('../Image/back3.png')}
-            style={styles.backlogo}
-          />
-        </TouchableOpacity>
-      ),
-    };
-  };
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
         <Text>Profile</Text>
       </View>
     );
@@ -30,7 +22,7 @@ export default class ProfileScreenS extends Component {
 const styles = (StyleSheet.salesrepProfile = {
   container: {
     flex: 1,
-    backgroundColor: '#6c81a3',
+    backgroundColor: '#2bbbad',
   },
   backlogo: {
     width: 40,

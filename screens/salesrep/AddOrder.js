@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   Image,
   Picker,
@@ -10,39 +9,75 @@ import {
   Modal,
   TouchableHighlight,
   Alert,
+  StatusBar,
 } from 'react-native';
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Text,
+  Body,
+  Form,
+  Icon,
+} from 'native-base';
+import {createAppContainer, createStackNavigator} from 'react-navigation';
 
-export default class OrderScreenS extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'NewOrder',
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#0398fc',
-      },
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.navigate('App')}>
-          <Image
-            source={require('../Image/back3.png')}
-            style={styles.backlogo}
-          />
-        </TouchableOpacity>
-      ),
-    };
+import NewOrderScreen1 from './SelectRouteAndCustomer';
+import SalesInvoice from './SalesInvoice';
+import Signature from './Signature';
+class OrderScreenS extends React.Component {
+  static navigationOptions = {
+    header: null,
   };
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Select Route</Text>
+        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+
+        <View style={{alignItems: 'center'}}>
+          <Text
+            style={{fontSize: 40, fontFamily: 'Cochin', fontWeight: 'bold'}}>
+            Add Order
+          </Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'skyblue',
+              width: 70,
+              height: 70,
+              borderRadius: 100,
+            }}
+            onPress={this.newOrder}>
+            <Text
+              style={{
+                fontSize: 50,
+                textAlign: 'center',
+                fontFamily: 'Cochin',
+                fontWeight: 'bold',
+              }}>
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
+  newOrder = () => {
+    // alert('AddNew Order');
+    this.props.navigation.navigate('Route');
+  };
 }
 
 const styles = (StyleSheet.salesrepNeworder = {
   container: {
     flex: 1,
-    backgroundColor: '#6c81a3',
+    backgroundColor: '#2bbbad',
   },
   routeText: {
     margin: 10,
@@ -59,3 +94,13 @@ const styles = (StyleSheet.salesrepNeworder = {
     margin: 10,
   },
 });
+const MainNavigator = createStackNavigator({
+  Home: {screen: OrderScreenS},
+  Route: {screen: NewOrderScreen1},
+  SalesInvoice: {screen: SalesInvoice},
+  Signature: {screen: Signature},
+});
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
