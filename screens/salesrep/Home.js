@@ -55,25 +55,6 @@ export default class HomeScreen extends Component {
               </TabHeading>
             }>
             <Tab1 />
-            <View style={styles.container}>
-              <Text>Profile Screen</Text>
-
-              <Card style={{width: 300}}>
-                <CardItem>
-                  <Body>
-                    <Left>
-                      <Text style={styles.logoutText}>Log Out</Text>
-                    </Left>
-                  </Body>
-                  <Body>
-                    <Button iconRight onPress={this.logOut}>
-                      <Text>logout</Text>
-                      <Icon name="person" />
-                    </Button>
-                  </Body>
-                </CardItem>
-              </Card>
-            </View>
           </Tab>
           <Tab
             heading={
