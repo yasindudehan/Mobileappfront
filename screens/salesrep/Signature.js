@@ -5,8 +5,14 @@ import SignatureCapture from 'react-native-signature-capture';
 import {Container, Content, Card} from 'native-base';
 // create a component
 class Signature extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {signature: null};
+  }
+
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
         <Text
@@ -23,9 +29,9 @@ class Signature extends Component {
           ref="sign"
           onSaveEvent={this._onSaveEvent}
           onDragEvent={this._onDragEvent}
-          saveImageFileInExtStorage={false}
+          saveImageFileInExtStorage={true}
           showNativeButtons={false}
-          showTitleLabel={false}
+          showTitleLabel={true}
           viewMode={'portrait'}
         />
 
@@ -49,7 +55,9 @@ class Signature extends Component {
             <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>Save</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={styles.buttonStyle1}>
+          <TouchableHighlight
+            style={styles.buttonStyle1}
+            onPress={this.nextPage}>
             <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>
               Submit Order
             </Text>
@@ -75,6 +83,9 @@ class Signature extends Component {
     // This callback will be called when the user enters signature
     console.log('dragged');
   }
+  nextPage = () => {
+    this.props.navigation.navigate('SubmitOrder');
+  };
 }
 
 // define your styles
@@ -83,7 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
   },
   signature: {
     flex: 1,

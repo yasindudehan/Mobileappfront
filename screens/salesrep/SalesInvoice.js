@@ -21,7 +21,7 @@ import {
 import SignatureCapture from 'react-native-signature-capture';
 import Date from './Date';
 // create a component
-class SalesInvoice extends Component {
+class SalesInvoice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,6 +41,11 @@ class SalesInvoice extends Component {
   }
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
+    const {navigation} = this.props;
+    //const customerSign = navigation.getParam(' customerSign', 'NO-User');
+    var signature = navigation.params
+      ? navigation.params.signature
+      : '<undefined>';
     return (
       <Container style={styles.container}>
         <Content padder>
