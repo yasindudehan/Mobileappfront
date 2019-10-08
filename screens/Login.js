@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TextInput,
   TouchableOpacity,
   ImageBackground,
   AsyncStorage,
+  StatusBar,
 } from 'react-native';
-
+import {Container, Header, Content, Text, Button, Toast} from 'native-base';
 const Info = {
   userId: 'Sadmin',
   password: '12345',
@@ -28,8 +28,10 @@ export default class LoginScreen extends Component {
   }
   render() {
     // const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
         <ImageBackground
           source={require('./Image/Logo.png')}
           style={styles.backgroundimage}
@@ -67,7 +69,11 @@ export default class LoginScreen extends Component {
       await AsyncStorage.setItem('logged', '2');
       this.props.navigation.navigate('App1');
     } else {
-      alert('error');
+      Toast.show({
+        text: 'Wrong password!',
+        buttonText: 'Okay',
+        duration: 3000,
+      });
     }
   };
 }
