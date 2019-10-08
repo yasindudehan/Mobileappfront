@@ -53,6 +53,7 @@ class ProfileScreenS extends React.Component {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };
+  
 }
 const styles = (StyleSheet.salesrepProfile = {
   container: {

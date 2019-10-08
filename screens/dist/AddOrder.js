@@ -24,7 +24,7 @@ import {
 } from 'native-base';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 
-import SalesInvoice from './Invoice';
+import Invoice from './Invoice';
 
 import SubmitOrder from './SubmitOrder';
 class OrderScreenD extends React.Component {
