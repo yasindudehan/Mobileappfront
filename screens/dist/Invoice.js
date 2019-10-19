@@ -159,7 +159,7 @@ class SalesInvoice extends React.Component {
                     <Text style={styles.invoiceTotal}>Total</Text>
                   </Body>
                 </CardItem>
-                
+
                 <CardItem bordered>
                   <Body>
                     <Text style={styles.invoiceTotal}>Net Total :</Text>
@@ -170,7 +170,6 @@ class SalesInvoice extends React.Component {
                 </CardItem>
               </Card>
             </Content>
-           
           </Card>
         </Content>
 
@@ -179,7 +178,7 @@ class SalesInvoice extends React.Component {
           style={{
             backgroundColor: '#58eb34',
             margin: 20,
-            marginLeft: 350,
+            marginLeft: 200,
             width: 100,
             height: 50,
             borderRadius: 20,

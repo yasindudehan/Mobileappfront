@@ -28,7 +28,7 @@ class ProfileScreenS extends React.Component {
         <View style={styles.body}>
           <View style={styles.bodyContent}>
             <Text style={styles.name}>Shalitha Jayamal</Text>
-            <Text style={styles.info}>Sales Rep</Text>
+            <Text style={styles.info}>Distributor</Text>
             <Text style={styles.description}>Works at Lavish pvt Lt </Text>
             <Form>
               <TouchableOpacity
@@ -36,7 +36,9 @@ class ProfileScreenS extends React.Component {
                 onPress={this.nextPage}>
                 <Text>Profile Update</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer} onPress={this.LogOut}>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={this.LogOut}>
                 <Text>Log Out</Text>
               </TouchableOpacity>
             </Form>
@@ -53,7 +55,6 @@ class ProfileScreenS extends React.Component {
     await AsyncStorage.clear();
     this.props.navigation.navigate('Auth');
   };
-  
 }
 const styles = (StyleSheet.salesrepProfile = {
   container: {
@@ -67,7 +68,7 @@ const styles = (StyleSheet.salesrepProfile = {
   },
   header: {
     backgroundColor: '#a8f58e',
-    height: 200,
+    height: 100,
   },
   avatar: {
     width: 130,
@@ -78,7 +79,7 @@ const styles = (StyleSheet.salesrepProfile = {
     marginBottom: 10,
     alignSelf: 'center',
     position: 'absolute',
-    marginTop: 130,
+    marginTop: 30,
   },
   name: {
     fontSize: 22,
