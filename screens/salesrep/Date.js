@@ -28,6 +28,7 @@ export default class DatePickerExample extends Component {
             fontWeight: 'bold',
             fontSize: 20,
             fontFamily: 'Cochin',
+            color: 'green',
           }}>
           Date: {this.state.chosenDate.toString().substr(4, 12)}
         </Text>

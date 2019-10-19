@@ -18,15 +18,62 @@ import {
   Left,
   Form,
 } from 'native-base';
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell,
+} from 'react-native-table-component';
+
 import SignatureCapture from 'react-native-signature-capture';
 import Date from './Date';
+import {green} from 'ansi-colors';
 // create a component
 class SalesInvoice extends React.Component {
+  a = () => {
+    const value = 0;
+    return (
+      <Picker
+        note={true}
+        mode="dropdown"
+        style={{
+          width: 50,
+          marginBottom: 20,
+          height: 22,
+          padding: 0,
+        }}
+        onValueChange={this.onValueChange.bind(this)}>
+        <Picker.Item label="0" value="0" />
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="2" value="2" />
+        <Picker.Item label="3" value="3" />
+        <Picker.Item label="4" value="4" />
+        <Picker.Item label="5" value="5" />
+        <Picker.Item label="6" value="6" />
+        <Picker.Item label="7" value="7" />
+        <Picker.Item label="8" value="8" />
+        <Picker.Item label="9" value="9" />
+        <Picker.Item label="10" value="10" />
+      </Picker>
+    );
+  };
   constructor(props) {
     super(props);
+    const picker = this.a();
     this.state = {
       selected: '0',
       billpaid: 'not paid',
+      tableHead: ['Product', 'Weight', 'Qut', 'Rate', 'Value'],
+      tableData: [
+        ['Tea Pouch ', '20g', '3', '4', '5'],
+        ['Tea Pouch', 'b', 'c', picker, 'e'],
+        ['1', '2', '3', '456\n789', '4556'],
+        ['a', 'b', 'c', 'd', 'e'],
+        ['a', 'b', 'b', 'b', 'b'],
+      ],
     };
   }
   onValueChange(value: string) {
@@ -41,168 +88,70 @@ class SalesInvoice extends React.Component {
   }
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
-    const {navigation} = this.props;
-    //const customerSign = navigation.getParam(' customerSign', 'NO-User');
-    var signature = navigation.params
-      ? navigation.params.signature
-      : '<undefined>';
+    const state = this.state;
     return (
       <Container style={styles.container}>
         <Content padder>
-          <Card>
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      fontSize: 20,
-                      fontFamily: 'Cochin',
-                    }}>
-                    SALES INVOICE
-                  </Text>
-                </Body>
+          <Card
+            style={{
+              borderwidth: 2,
+              borderColor: 'green',
+              backgroundColor: '#ebe6e6',
+            }}>
+            <Table>
+              <Cell
+                data={['SALESINVOICE']}
+                textStyle={{fontSize: 25, color: 'green'}}
+              />
 
-                <Body>
-                  <Date />
-                </Body>
-              </CardItem>
-            </Card>
-
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text>Customer Name :</Text>
-                </Body>
-              </CardItem>
-            </Card>
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text>Customer Address :</Text>
-                </Body>
-              </CardItem>
-            </Card>
-
-            <View style={{flexDirection: 'row'}}>
-              <CardItem bordered style={{flex: 3}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Product</Text>
-
-                  <Text style={{marginBottom: 20}}>Tea Pouch</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 2}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Weight</Text>
-
-                  <Text style={{marginBottom: 20}}>20g</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.4}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Qut</Text>
-
-                  <Form>
-                    <Picker
-                      note={true}
-                      mode="dropdown"
-                      style={{
-                        width: 100,
-                        marginBottom: 20,
-                        height: 22,
-                        padding: 0,
-                      }}
-                      selectedValue={this.state.selected}
-                      onValueChange={this.onValueChange.bind(this)}>
-                      <Picker.Item label="0" value="0" />
-                      <Picker.Item label="1" value="1" />
-                      <Picker.Item label="2" value="2" />
-                      <Picker.Item label="3" value="3" />
-                      <Picker.Item label="4" value="4" />
-                      <Picker.Item label="5" value="5" />
-                      <Picker.Item label="6" value="6" />
-                      <Picker.Item label="7" value="7" />
-                      <Picker.Item label="8" value="8" />
-                      <Picker.Item label="9" value="9" />
-                      <Picker.Item label="10" value="10" />
-                    </Picker>
-                  </Form>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.7}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Rate</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.7}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Value</Text>
-
-                  <Text style={{marginBottom: 20}}>
-                    {this.state.selected * 30}
-                  </Text>
-                </Body>
-              </CardItem>
-            </View>
-            <Content>
-              <Card>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Total :</Text>
-                  </Body>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Total</Text>
-                  </Body>
-                </CardItem>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Discount :</Text>
-                  </Body>
-                  <Body>
-                    <TextInput
-                      placeholder="Enter Discount"
-                      style={styles.invoiceTotal}
-                    />
-                  </Body>
-                </CardItem>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Net Total :</Text>
-                  </Body>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Net Total</Text>
-                  </Body>
-                </CardItem>
-              </Card>
-            </Content>
-            <Card>
-              <CardItem>
-                <Body>
-                  <Picker
-                    note={true}
-                    mode="dropdown"
-                    style={{
-                      width: 400,
-                      marginBottom: 20,
-                      height: 22,
-                      padding: 0,
-                      fontSize: 40,
-                      fontFamily: 'Cochin',
-                      fontWeight: 'bold',
-                    }}
-                    selectedValue={this.state.billpaid}
-                    onValueChange={this.onPaid.bind(this)}>
-                    <Picker.Item label="Paid" value="paid" />
-                    <Picker.Item label="Not Paid" value="not paid" />
-                  </Picker>
-                </Body>
-              </CardItem>
-            </Card>
+              <Date />
+              <Row
+                data={['Customer  Name ', ':customer name']}
+                textStyle={{fontSize: 10}}
+              />
+              <Row
+                data={['Customer Address ', ':customer address']}
+                textStyle={{fontSize: 10}}
+              />
+            </Table>
+            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
+              <Row
+                data={state.tableHead}
+                style={styles.head}
+                textStyle={styles.text}
+              />
+              <Row data={['TEA RANGE']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row data={['01 kg POUCH']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row data={['TEA BAG']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row data={['TEA SACHET']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row data={['TEA BULCK']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row data={['TEA BOTTLE']} style={{backgroundColor: 'green'}} />
+              <Rows data={state.tableData} textStyle={styles.text} />
+              <Row
+                data={['TEA BASKET RANGE']}
+                style={{backgroundColor: 'green'}}
+              />
+              <Rows data={state.tableData} textStyle={styles.text} />
+            </Table>
+            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
+              <Row
+                data={['Total       ', 'total here']}
+                style={{backgroundColor: '#DCFDD7'}}
+              />
+              <Row
+                data={['Discount ', ' here']}
+                style={{backgroundColor: '#DCFDD7'}}
+              />
+              <Row
+                data={['Net Total   ', ' here']}
+                style={{backgroundColor: '#DCFDD7'}}
+              />
+            </Table>
           </Card>
         </Content>
 
@@ -211,7 +160,7 @@ class SalesInvoice extends React.Component {
           style={{
             backgroundColor: '#58eb34',
             margin: 20,
-            marginLeft: 350,
+            marginLeft: 200,
             width: 100,
             height: 50,
             borderRadius: 20,
@@ -252,6 +201,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Cochin',
   },
+  head: {height: 40},
+  text: {margin: 6, color: 'green'},
 });
 
 //make this component available to the app
