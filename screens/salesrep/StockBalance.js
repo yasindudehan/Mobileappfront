@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
-
+import ProgressCircle from 'react-native-progress-circle';
 import {
   Container,
   Header,
@@ -19,47 +19,352 @@ import {
 } from 'native-base';
 export default class StockBalanceScreen extends Component {
   render() {
+    const a = 100;
+    const b = 1000;
     return (
       <Container style={styles.container}>
         <Content padder>
           <Card>
+            <Text>TEA POUCH</Text>
             <CardItem>
-              <Text>Stock Balance1</Text>
+              <Body>
+                <Text> 20g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>50g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a}</Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>100g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a}</Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text> 200g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text> 400g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
-        </Content>
-        <Content padder>
+
           <Card>
+            <Text>01KG POUCH</Text>
             <CardItem>
-              <Text>Stock Balance2</Text>
+              <Body>
+                <Text> Premium Qulality</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>Export Quality</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a}</Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+
+            <CardItem>
+              <Body>
+                <Text> BOPF Quality</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>Catering Pack</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
-        </Content>
-        <Content padder>
+
           <Card>
+            <Text>TEA BAG</Text>
             <CardItem>
-              <Text>Stock Balance3</Text>
+              <Body>
+                <Text> 25 Pack</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>50 Pack</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text> 100 Pack</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
-        </Content>
-        <Content padder>
           <Card>
+            <Text>TEA SACHET</Text>
             <CardItem>
-              <Text>Stock Balance4</Text>
+              <Body>
+                <Text>250 Bag</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>500 Bag</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text> 1000 Bag</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
-        </Content>
-        <Content padder>
+
           <Card>
+            <Text>TEA BULK</Text>
             <CardItem>
-              <Text>Stock Balance5</Text>
+              <Body>
+                <Text> Premium Qulality{'\n'}5kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>Export Quality{'\n'}5kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a}</Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+
+            <CardItem>
+              <Body>
+                <Text> Catering Quality{'\n'}5kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>Export Quality{'\n'}25kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text> Tea Box{'\n'}25kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>Bag Type{'\n'}50kg</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
-        </Content>
-        <Content padder>
+
           <Card>
+            <Text>TEA BOTTLE</Text>
             <CardItem>
-              <Text>Stock Balance6</Text>
+              <Body>
+                <Text>250g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+            </CardItem>
+          </Card>
+          <Card>
+            <Text>TEA BASKET RANGE</Text>
+            <CardItem>
+              <Body>
+                <Text> PF-1 4.5g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
+              <Body>
+                <Text>BP-1 4.0g</Text>
+                <ProgressCircle
+                  percent={((b - a) / b) * 100}
+                  radius={50}
+                  borderWidth={20}
+                  color="#05f709"
+                  shadowColor="#edf0ed"
+                  bgColor="#f2e68d">
+                  <Text style={{fontSize: 18}}>{b - a} </Text>
+                </ProgressCircle>
+              </Body>
             </CardItem>
           </Card>
         </Content>

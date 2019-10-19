@@ -24,11 +24,10 @@ import {
 } from 'native-base';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 
-import NewOrderScreen1 from './SelectRouteAndCustomer';
-import SalesInvoice from './SalesInvoice';
-import Signature from './Signature';
+import Invoice from './Invoice';
+
 import SubmitOrder from './SubmitOrder';
-class OrderScreenS extends React.Component {
+class OrderScreenD extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -71,7 +70,7 @@ class OrderScreenS extends React.Component {
   }
   newOrder = () => {
     // alert('AddNew Order');
-    this.props.navigation.navigate('Route');
+    this.props.navigation.navigate('Invoice');
   };
 }
 
@@ -96,10 +95,10 @@ const styles = (StyleSheet.salesrepNeworder = {
   },
 });
 const MainNavigator = createStackNavigator({
-  Home: {screen: OrderScreenS},
-  Route: {screen: NewOrderScreen1},
-  SalesInvoice: {screen: SalesInvoice},
-  Signature: {screen: Signature},
+  Home: {screen: OrderScreenD},
+  
+  Invoice: {screen: Invoice},
+ 
   SubmitOrder: {screen: SubmitOrder},
 });
 

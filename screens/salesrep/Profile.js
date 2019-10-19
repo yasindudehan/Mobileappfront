@@ -12,42 +12,56 @@ import {
 import {Container, Content, Card, CardItem, Form} from 'native-base';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import UpdateProfile from './UpdateProfile';
+
 class ProfileScreenS extends React.Component {
   static navigationOptions = {
     header: null,
   };
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
-        <View style={styles.header}></View>
-        <Image
-          style={styles.avatar}
-          source={{uri: 'http://www.hightiptv.com/images/image-profile-8.png'}}
-        />
-        <View style={styles.body}>
-          <View style={styles.bodyContent}>
-            <Text style={styles.name}>Shalitha Jayamal</Text>
-            <Text style={styles.info}>Sales Rep</Text>
-            <Text style={styles.description}>Works at Lavish pvt Lt </Text>
-            <Form>
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={this.nextPage}>
-                <Text>Profile Update</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Log Out</Text>
-              </TouchableOpacity>
-            </Form>
+      <Container>
+        <View style={styles.container}>
+          <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+          <View style={styles.header}></View>
+
+          <Image
+            style={styles.avatar}
+            source={{
+              uri: 'http://www.hightiptv.com/images/image-profile-8.png',
+            }}
+          />
+
+          <View style={styles.body}>
+            <View style={styles.bodyContent}>
+              <Text style={styles.name}>Sales Rep Name</Text>
+              <Text style={styles.info}>Sales Rep</Text>
+              <Text style={styles.description}>Works at Lavish pvt Lt </Text>
+
+              <Form>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={this.nextPage}>
+                  <Text>Profile Update</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={this.LogOut}>
+                  <Text>Log Out</Text>
+                </TouchableOpacity>
+              </Form>
+            </View>
           </View>
         </View>
-      </View>
+      </Container>
     );
   }
   nextPage = () => {
     // alert('Pressed');
     this.props.navigation.navigate('UpdateProfile');
+  };
+  LogOut = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Auth');
   };
 }
 const styles = (StyleSheet.salesrepProfile = {
@@ -62,7 +76,7 @@ const styles = (StyleSheet.salesrepProfile = {
   },
   header: {
     backgroundColor: '#a8f58e',
-    height: 200,
+    height: 100,
   },
   avatar: {
     width: 130,
@@ -73,7 +87,7 @@ const styles = (StyleSheet.salesrepProfile = {
     marginBottom: 10,
     alignSelf: 'center',
     position: 'absolute',
-    marginTop: 130,
+    marginTop: 30,
   },
   name: {
     fontSize: 22,
@@ -110,7 +124,7 @@ const styles = (StyleSheet.salesrepProfile = {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 30,
     width: 250,
     borderRadius: 30,
     backgroundColor: '#00BFFF',

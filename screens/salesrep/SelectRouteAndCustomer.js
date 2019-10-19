@@ -41,9 +41,10 @@ export default class SelectRoute extends React.Component {
           Select Route
         </Text>
 
-        <Card>
+        <Card style={{backgroundColor: '#6a6b6b'}}>
           <Form>
             <Picker
+              style={{witdth: 0}}
               mode="dropdown"
               placeholder="Select One"
               placeholderStyle={{color: '#2874F0'}}
@@ -64,7 +65,7 @@ export default class SelectRoute extends React.Component {
           style={{
             backgroundColor: '#58eb34',
             margin: 20,
-            marginLeft: 350,
+            marginLeft: 200,
             width: 100,
             height: 50,
             borderRadius: 20,
@@ -88,7 +89,7 @@ export default class SelectRoute extends React.Component {
   selectpickerDisplay = () => {
     if (this.state.selected === '1') {
       return (
-        <Card>
+        <Card style={{backgroundColor: '#6a6b6b'}}>
           <ScrollView>
             <ListItem selected={false}>
               <Left>

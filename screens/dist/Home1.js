@@ -2,56 +2,117 @@ import React, {Component} from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   AsyncStorage,
   Image,
+  StatusBar,
 } from 'react-native';
+import Tab1 from './Profile';
+import Tab2 from './AddOrder';
 
-export default class HomeScreen1 extends Component {
+//import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  Container,
+  Header,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Segment,
+  Content,
+  Text,
+  Tabs,
+  Tab,
+  Title,
+  CardItem,
+  Card,
+  TabHeading,
+} from 'native-base';
+export default class HomeScreen extends Component {
   static navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-      backgroundColor: '#0398fc',
-    },
+    header: null,
   };
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.flexd}>
-          <TouchableOpacity style={styles.buttons} onPress={this.goProfile}>
-            <Image
-              source={require('../Image/profile.png')}
-              style={styles.logo}
-            />
-            <Text>Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttons}>
-            <Image
-              source={require('../Image/addOrder.png')}
-              style={styles.logo}
-            />
-            <Text>Add Order</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Container style={{backgroundColor: '#2bbbad'}}>
+        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+        <Header style={{backgroundColor: '#124d04'}}>
+          <Body>
+            <Right>
+              <Image
+                source={require('../Image/logo3.png')}
+                style={{width: 150, height: 50}}
+              />
+            </Right>
+          </Body>
+        </Header>
+        <Tabs>
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: '#124d04'}}>
+                <Text>PROFILE</Text>
+              </TabHeading>
+            }>
+            <Tab1 />
+			
+          </Tab>
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: '#124d04'}}>
+                <Text>ADD ORDER</Text>
+              </TabHeading>
+            }>
+            <Tab2 />
+          </Tab>
+          
+        </Tabs>
+      </Container>
     );
   }
-
-  goProfile = () => {
-    //  alert('press');
-    this.props.navigation.navigate('ProfileD');
-  };
+ 
 }
-
-const styles = (StyleSheet.distributorHome = {
+const styles = (StyleSheet.home = {
   container: {
     flex: 1,
-    //flexDirection: 'row',
-    backgroundColor: '#028799',
+    backgroundColor: '#2bbbad',
   },
   flexd: {
     flexDirection: 'row',
+  },
+buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
+  },
+  button2: {
+    width: 50,
+    height: 50,
+    margin: 10,
+    backgroundColor: 'blue',
+    borderRadius: 100,
+  },
+  button1: {
+    //justifyContent:'center',
+    width: 70,
+    height: 70,
+    // backgroundColor: 'blue',
+  },
+  button2Text: {
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // paddingBottem:10,
+    margin: 0,
+    padding: 10,
+    fontSize: 40,
+    color: 'white',
   },
   buttons: {
     width: 70,
@@ -59,10 +120,13 @@ const styles = (StyleSheet.distributorHome = {
     // backgroundColor: '#1e2a3d',
     borderRadius: 200,
     margin: 50,
-    marginLeft: 90,
+    //marginLeft: 20,
   },
   logo: {
     width: 70,
     height: 70,
+  },
+  logoutText: {
+    fontSize: 30,
   },
 });

@@ -5,15 +5,25 @@ import {
   AsyncStorage,
   ActivityIndicator,
   StatusBar,
+  Platform,
 } from 'react-native';
 import {
   createStackNavigator,
   createAppContainer,
   createSwitchNavigator,
+  createMaterialTopTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
-import HomeScreen from '../salesrep/Home';
 import LoginScreen from '../Login';
+
+import HomeScreen from '../salesrep/Home';
+import ProfileSScreen from '../salesrep/Profile';
+import AddOrderSScreen from '../salesrep/AddOrder';
+import StockBalanceScreen from '../salesrep/StockBalance';
+
 import HomeScreen1 from '../dist/Home1';
+import ProfileDScreen from '../dist/Profile';
+import AddOrderDScreen from '../dist/AddOrder';
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -39,13 +49,51 @@ class Authentication extends React.Component {
     }
   };
 }
-const AppStack = createStackNavigator({
-  Home: HomeScreen,
-}); /**Sales rep Home Screen */
-const App1Stack = createStackNavigator({
-  Home1: HomeScreen1,
-}); /*Distributor Home Screen */
-const AuthStack = createStackNavigator({Login: LoginScreen});
+
+const AppStack = createMaterialTopTabNavigator(
+  {
+    PROFILE: {screen: ProfileSScreen},
+    ADDORDER: {screen: AddOrderSScreen},
+    STOCKBALNCE: {screen: StockBalanceScreen},
+  },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: '#004a00', //color you want to change
+      },
+
+      labelStyle: {
+        fontSize: 10,
+        color: 'white',
+        fontFamily: 'Cochin',
+        fontWeight: 'bold',
+      },
+    },
+  },
+); /**Sales rep tab Screen */
+const App1Stack = createMaterialTopTabNavigator(
+  {
+    PROFILE: {screen: ProfileDScreen},
+    ADDORDER: {screen: AddOrderDScreen},
+  },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: '#004a00', //color you want to change
+      },
+
+      labelStyle: {
+        fontSize: 15,
+        color: 'white',
+        fontFamily: 'Cochin',
+        fontWeight: 'bold',
+      },
+    },
+  },
+); /*Distributor tab Screen */
+const AuthStack = createSwitchNavigator({
+  Login: {screen: LoginScreen},
+});
 
 export default createAppContainer(
   createSwitchNavigator(
@@ -54,6 +102,7 @@ export default createAppContainer(
       App: AppStack,
       App1: App1Stack,
       Auth: AuthStack,
+      //ProfileS: ProfileSStack,
     },
 
     {initialRouteName: 'AuthLoading'},
