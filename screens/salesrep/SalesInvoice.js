@@ -28,67 +28,20 @@ import {
   Cell,
 } from 'react-native-table-component';
 
-import SignatureCapture from 'react-native-signature-capture';
 import Date from './Date';
 import {green} from 'ansi-colors';
 // create a component
 class SalesInvoice extends React.Component {
-  a = () => {
-    const value = 0;
-    return (
-      <Picker
-        note={true}
-        mode="dropdown"
-        style={{
-          width: 50,
-          marginBottom: 20,
-          height: 22,
-          padding: 0,
-        }}
-        onValueChange={this.onValueChange.bind(this)}>
-        <Picker.Item label="0" value="0" />
-        <Picker.Item label="1" value="1" />
-        <Picker.Item label="2" value="2" />
-        <Picker.Item label="3" value="3" />
-        <Picker.Item label="4" value="4" />
-        <Picker.Item label="5" value="5" />
-        <Picker.Item label="6" value="6" />
-        <Picker.Item label="7" value="7" />
-        <Picker.Item label="8" value="8" />
-        <Picker.Item label="9" value="9" />
-        <Picker.Item label="10" value="10" />
-      </Picker>
-    );
-  };
   constructor(props) {
     super(props);
-    const picker = this.a();
+
     this.state = {
-      selected: '0',
-      billpaid: 'not paid',
-      tableHead: ['Product', 'Weight', 'Qut', 'Rate', 'Value'],
-      tableData: [
-        ['Tea Pouch ', '20g', '3', '4', '5'],
-        ['Tea Pouch', 'b', 'c', picker, 'e'],
-        ['1', '2', '3', '456\n789', '4556'],
-        ['a', 'b', 'c', 'd', 'e'],
-        ['a', 'b', 'b', 'b', 'b'],
-      ],
+      selecteds: '',
     };
   }
-  onValueChange(value: string) {
-    this.setState({
-      selected: value,
-    });
-  }
-  onPaid(value: string) {
-    this.setState({
-      billpaid: value,
-    });
-  }
+
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
-    const state = this.state;
     return (
       <Container style={styles.container}>
         <Content padder>
@@ -105,6 +58,7 @@ class SalesInvoice extends React.Component {
               />
 
               <Date />
+
               <Row
                 data={['Customer  Name ', ':customer name']}
                 textStyle={{fontSize: 10}}
@@ -114,43 +68,1781 @@ class SalesInvoice extends React.Component {
                 textStyle={{fontSize: 10}}
               />
             </Table>
-            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
-              <Row
-                data={state.tableHead}
-                style={styles.head}
-                textStyle={styles.text}
-              />
-              <Row data={['TEA RANGE']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['01 kg POUCH']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BAG']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA SACHET']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BULCK']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BOTTLE']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row
-                data={['TEA BASKET RANGE']}
-                style={{backgroundColor: 'green'}}
-              />
-              <Rows data={state.tableData} textStyle={styles.text} />
+            <Table>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Product</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Weight</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Qut</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Rate</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Value</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA RANGE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>20g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>...</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>...</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>....</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>100g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>200g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>400g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>01 kg POUCH</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Premium Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>BOPF Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Pack</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BAG</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>100 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA SACHET</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>250 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>500 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1000 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BULK</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Premium Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Box</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Bag Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BOTTLE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Bottle</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>250g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BASKET RANGE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>PF-l</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>4.5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>BP-l</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>4.0 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Picker style={{width: 55, height: 70}}>
+                    <Picker.Item label="1" value="1" />
+                    <Picker.Item label="2" value="2" />
+                    <Picker.Item label="3" value="2" />
+                  </Picker>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>.....</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>........</Text>
+                </View>
+              </View>
             </Table>
-            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
-              <Row
-                data={['Total       ', 'total here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
-              <Row
-                data={['Discount ', ' here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
-              <Row
-                data={['Net Total   ', ' here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
+            <Table>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>TOTAL</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>here</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: '#BDFDB3',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>Discount</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <TextInput placeholder="here" />
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>NET TOTAL</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>here</Text>
+                </View>
+              </View>
             </Table>
           </Card>
         </Content>
