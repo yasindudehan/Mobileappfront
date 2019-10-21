@@ -27,6 +27,7 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 import NewOrderScreen1 from './SelectRouteAndCustomer';
 import SalesInvoice from './SalesInvoice';
 import Signature from './Signature';
+import SalesrepSign from './SalesrepSign';
 import SubmitOrder from './SubmitOrder';
 class OrderScreenS extends React.Component {
   static navigationOptions = {
@@ -95,14 +96,15 @@ const styles = (StyleSheet.salesrepNeworder = {
     margin: 10,
   },
 });
-const MainNavigator = createStackNavigator({
+/*const MainNavigator = createStackNavigator({
   Home: {screen: OrderScreenS},
   Route: {screen: NewOrderScreen1},
   SalesInvoice: {screen: SalesInvoice},
   Signature: {screen: Signature},
+  SalesrepSign: {screen: SalesrepSign},
   SubmitOrder: {screen: SubmitOrder},
 });
 
 const App = createAppContainer(MainNavigator);
-
-export default App;
+*/
+export default OrderScreenS;

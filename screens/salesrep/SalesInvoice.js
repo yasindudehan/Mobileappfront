@@ -189,7 +189,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>...</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -250,7 +250,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -311,7 +311,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -372,7 +372,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -433,7 +433,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -515,7 +515,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -576,7 +576,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -637,7 +637,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -698,7 +698,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -780,7 +780,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -841,7 +841,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -902,7 +902,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -984,7 +984,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1045,7 +1045,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1106,7 +1106,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1188,7 +1188,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1249,7 +1249,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1310,7 +1310,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1371,7 +1371,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1432,7 +1432,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1493,7 +1493,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1575,7 +1575,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1657,7 +1657,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1718,11 +1718,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Picker style={{width: 55, height: 70}}>
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="2" />
-                  </Picker>
+                  <TextInput placeholder="____" />
                 </View>
                 <View
                   style={{
@@ -1769,7 +1765,7 @@ class SalesInvoice extends React.Component {
                 </View>
                 <View
                   style={{
-                    flex: 3,
+                    flex: 2.15,
                     alignSelf: 'stretch',
                     borderWidth: 1,
                     borderColor: 'green',
@@ -1790,9 +1786,10 @@ class SalesInvoice extends React.Component {
                 }}>
                 <View
                   style={{
-                    flex: 1,
+                    flex: 3,
                     alignSelf: 'stretch',
-                    borderWidth: 1,
+                    borderWidth: 2,
+                    borderRightWidth: 0,
                     borderColor: 'green',
                     borderBottomWidth: 0,
                     backgroundColor: '#BDFDB3',
@@ -1801,9 +1798,9 @@ class SalesInvoice extends React.Component {
                 </View>
                 <View
                   style={{
-                    flex: 1,
+                    flex: 2.15,
                     alignSelf: 'stretch',
-                    borderWidth: 1,
+                    borderWidth: 2,
                     borderColor: 'green',
                     borderBottomWidth: 0,
                     backgroundColor: '#BDFDB3',
@@ -1833,7 +1830,7 @@ class SalesInvoice extends React.Component {
                 </View>
                 <View
                   style={{
-                    flex: 3,
+                    flex: 2.15,
                     alignSelf: 'stretch',
                     borderWidth: 1,
                     borderColor: 'green',

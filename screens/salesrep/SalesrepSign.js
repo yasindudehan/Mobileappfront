@@ -22,7 +22,7 @@ class Signature extends Component {
             fontWeight: 'bold',
             fontFamily: 'Cochin',
           }}>
-          Customer sign here
+          Sales rep Sign here
         </Text>
         <SignatureCapture
           style={[{flex: 1}, styles.signature]}
@@ -82,7 +82,7 @@ class Signature extends Component {
     console.log('dragged');
   }
   nextPage = () => {
-    this.props.navigation.navigate('SalesrepSign');
+    this.props.navigation.navigate('SubmitOrder');
   };
 }
 

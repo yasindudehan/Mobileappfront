@@ -60,29 +60,30 @@ export default class SelectRoute extends React.Component {
           Select Customer
         </Text>
         <Content>{this.selectpickerDisplay()}</Content>
-
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#58eb34',
-            margin: 20,
-            marginLeft: 200,
-            width: 100,
-            height: 50,
-            borderRadius: 20,
-          }}
-          onPress={this.NextPage}>
-          <Text
+        <Content>
+          <TouchableOpacity
             style={{
-              color: 'white',
-              textAlign: 'center',
-              marginTop: 10,
-              fontSize: 20,
-              fontWeight: 'bold',
-              overflow: 'hidden',
-            }}>
-            Next
-          </Text>
-        </TouchableOpacity>
+              backgroundColor: '#58eb34',
+              margin: 20,
+              marginLeft: 200,
+              width: 100,
+              height: 50,
+              borderRadius: 20,
+            }}
+            onPress={this.NextPage}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                marginTop: 10,
+                fontSize: 20,
+                fontWeight: 'bold',
+                overflow: 'hidden',
+              }}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        </Content>
       </Container>
     );
   }
