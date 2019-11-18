@@ -1,5 +1,6 @@
 //import liraries
 import React, {Component} from 'react';
+import Axios from 'axios';
 import {
   View,
   StyleSheet,
@@ -28,67 +29,75 @@ import {
   Cell,
 } from 'react-native-table-component';
 
-import SignatureCapture from 'react-native-signature-capture';
 import Date from './Date';
 import {green} from 'ansi-colors';
 // create a component
+
 class SalesInvoice extends React.Component {
-  a = () => {
-    const value = 0;
-    return (
-      <Picker
-        note={true}
-        mode="dropdown"
-        style={{
-          width: 50,
-          marginBottom: 20,
-          height: 22,
-          padding: 0,
-        }}
-        onValueChange={this.onValueChange.bind(this)}>
-        <Picker.Item label="0" value="0" />
-        <Picker.Item label="1" value="1" />
-        <Picker.Item label="2" value="2" />
-        <Picker.Item label="3" value="3" />
-        <Picker.Item label="4" value="4" />
-        <Picker.Item label="5" value="5" />
-        <Picker.Item label="6" value="6" />
-        <Picker.Item label="7" value="7" />
-        <Picker.Item label="8" value="8" />
-        <Picker.Item label="9" value="9" />
-        <Picker.Item label="10" value="10" />
-      </Picker>
-    );
-  };
   constructor(props) {
     super(props);
-    const picker = this.a();
+
     this.state = {
-      selected: '0',
-      billpaid: 'not paid',
-      tableHead: ['Product', 'Weight', 'Qut', 'Rate', 'Value'],
-      tableData: [
-        ['Tea Pouch ', '20g', '3', '4', '5'],
-        ['Tea Pouch', 'b', 'c', picker, 'e'],
-        ['1', '2', '3', '456\n789', '4556'],
-        ['a', 'b', 'c', 'd', 'e'],
-        ['a', 'b', 'b', 'b', 'b'],
-      ],
+      tq1: '0',
+      tq2: '0',
+      tq3: '0',
+      tq4: '0',
+      tq5: '0',
+      tq6: '0',
+      tq7: '0',
+      tq8: '0',
+      tq9: '0',
+      tq10: '0',
+      tq11: '0',
+      tq12: '0',
+      tq13: '0',
+      tq14: '0',
+      tq15: '0',
+      tq16: '0',
+      tq17: '0',
+      tq18: '0',
+      tq19: '0',
+      tq20: '0',
+      tq21: '0',
+      tq22: '0',
+      tq23: '0',
+      tq24: '0',
+      total: '0',
     };
   }
-  onValueChange(value: string) {
-    this.setState({
-      selected: value,
-    });
-  }
-  onPaid(value: string) {
-    this.setState({
-      billpaid: value,
-    });
-  }
+
+  totalValue = totatvalue => {
+    var totalValue =
+      parseInt(this.state.tq1) * 30.0 +
+      parseInt(this.state.tq2) * 50.0 +
+      parseInt(this.state.tq3) * 100.0 +
+      parseInt(this.state.tq4) * 200.0 +
+      parseInt(this.state.tq5) * 400.0 +
+      parseInt(this.state.tq6) * 800.0 +
+      parseInt(this.state.tq7) * 800.0 +
+      parseInt(this.state.tq8) * 700.0 +
+      parseInt(this.state.tq9) * 300.0 +
+      parseInt(this.state.tq10) * 500.0 +
+      parseInt(this.state.tq11) * 500.0 +
+      parseInt(this.state.tq12) * 800.0 +
+      parseInt(this.state.tq13) * 300.0 +
+      parseInt(this.state.tq14) * 500.0 +
+      parseInt(this.state.tq15) * 800.0 +
+      parseInt(this.state.tq16) * 3200.0 +
+      parseInt(this.state.tq17) * 3200.0 +
+      parseInt(this.state.tq18) * 3200.0 +
+      parseInt(this.state.tq19) * 20000.0 +
+      parseInt(this.state.tq20) * 20000.0 +
+      parseInt(this.state.tq21) * 30000.0 +
+      parseInt(this.state.tq22) * 350.0 +
+      parseInt(this.state.tq23) * 2200.0 +
+      parseInt(this.state.tq24) * 2200.0;
+    totalValue = totalValue.toFixed(2);
+    this.setState({total: totalValue});
+  };
+
   static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
-    const state = this.state;
     return (
       <Container style={styles.container}>
         <Content padder>
@@ -105,6 +114,7 @@ class SalesInvoice extends React.Component {
               />
 
               <Date />
+
               <Row
                 data={['Customer  Name ', ':customer name']}
                 textStyle={{fontSize: 10}}
@@ -114,43 +124,1860 @@ class SalesInvoice extends React.Component {
                 textStyle={{fontSize: 10}}
               />
             </Table>
-            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
-              <Row
-                data={state.tableHead}
-                style={styles.head}
-                textStyle={styles.text}
-              />
-              <Row data={['TEA RANGE']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['01 kg POUCH']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BAG']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA SACHET']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BULCK']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row data={['TEA BOTTLE']} style={{backgroundColor: 'green'}} />
-              <Rows data={state.tableData} textStyle={styles.text} />
-              <Row
-                data={['TEA BASKET RANGE']}
-                style={{backgroundColor: 'green'}}
-              />
-              <Rows data={state.tableData} textStyle={styles.text} />
+            <Table>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Product</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Weight</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Qut</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Rate</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Value</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA RANGE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>20g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq1}
+                    onChangeText={tq1 => this.setState({tq1})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>30.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text style={{marginTop: 10}}>
+                    {(this.state.tq1 * 30).toFixed(2)}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq2}
+                    onChangeText={tq2 => this.setState({tq2})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq2 * 50).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>100g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq3}
+                    onChangeText={tq3 => this.setState({tq3})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>100.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq3 * 100).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>200g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq4}
+                    onChangeText={tq4 => this.setState({tq4})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq4 * 200).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Pouch</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>400g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq5}
+                    onChangeText={tq5 => this.setState({tq5})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>400.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq5 * 400).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>01 kg POUCH</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Premium Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq6}
+                    onChangeText={tq6 => this.setState({tq6})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>800.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq6 * 800).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq7}
+                    onChangeText={tq7 => this.setState({tq7})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>800.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq7 * 800).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>BOPF Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq8}
+                    onChangeText={tq8 => this.setState({tq8})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>700.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq8 * 700).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Pack</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq9}
+                    onChangeText={tq9 => this.setState({tq9})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>300.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq9 * 300).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BAG</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq10}
+                    onChangeText={tq10 => this.setState({tq10})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>500.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq10 * 500).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq11}
+                    onChangeText={tq11 => this.setState({tq11})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>500.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq11 * 500).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Packet Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>100 Pack</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq12}
+                    onChangeText={tq12 => this.setState({tq12})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>800.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq12 * 800).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA SACHET</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>250 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq13}
+                    onChangeText={tq13 => this.setState({tq13})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>300.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq13 * 300).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>500 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq14}
+                    onChangeText={tq14 => this.setState({tq14})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>500.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq14 * 800).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>1000 Bag</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq15}
+                    onChangeText={tq15 => this.setState({tq15})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>800.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq15 * 800).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BULK</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Premium Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq16}
+                    onChangeText={tq16 => this.setState({tq16})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>3200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq16 * 3200).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq17}
+                    onChangeText={tq17 => this.setState({tq17})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>3200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq17 * 3200).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Catering Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq18}
+                    onChangeText={tq18 => this.setState({tq18})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>3200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq18 * 3200).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Export Quality</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq19}
+                    onChangeText={tq19 => this.setState({tq19})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>20000.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq19 * 20000).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Box</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>25 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq20}
+                    onChangeText={tq20 => this.setState({tq20})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>20000.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq20 * 20000).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Bag Type</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>50 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq21}
+                    onChangeText={tq21 => this.setState({tq21})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>30000.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq21 * 30000).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BOTTLE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>Tea Bottle</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>250g</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq22}
+                    onChangeText={tq22 => this.setState({tq22})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>350.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq22 * 350).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text>TEA BASKET RANGE</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>PF-l</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>4.5 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq23}
+                    onChangeText={tq23 => this.setState({tq23})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>2200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq23 * 2200).toFixed(2)}</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>BP-l</Text>
+                </View>
+
+                <View
+                  style={{
+                    flex: 2,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>4.0 kg</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <TextInput
+                    value={this.state.tq24}
+                    onChangeText={tq24 => this.setState({tq24})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text>2200.00</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1.5,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                  }}>
+                  <Text> {(this.state.tq24 * 2200).toFixed(2)}</Text>
+                </View>
+              </View>
             </Table>
-            <Table borderStyle={{borderWidth: 2, borderColor: 'green'}}>
-              <Row
-                data={['Total       ', 'total here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
-              <Row
-                data={['Discount ', ' here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
-              <Row
-                data={['Net Total   ', ' here']}
-                style={{backgroundColor: '#DCFDD7'}}
-              />
+            <Table>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                  borderBottomWidth: 0,
+                  height: 50,
+                }}>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text>TOTAL</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 2.15,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: '#BDFDB3',
+                  }}>
+                  <Text onPress={this.totalValue}>Rs {this.state.total}</Text>
+                </View>
+              </View>
             </Table>
           </Card>
         </Content>
@@ -180,7 +2007,43 @@ class SalesInvoice extends React.Component {
       </Container>
     );
   }
-  nextPage = () => {
+  nextPage = e => {
+    e.preventDefault();
+    const order = {
+      qut1: this.state.tq1,
+      qut2: this.state.tq2,
+      qut3: this.state.tq3,
+      qut4: this.state.tq4,
+      qut5: this.state.tq5,
+      qut6: this.state.tq6,
+      qut7: this.state.tq7,
+      qut8: this.state.tq8,
+      qut9: this.state.tq9,
+      qut10: this.state.tq10,
+      qut11: this.state.tq11,
+      qut12: this.state.tq12,
+      qut13: this.state.tq13,
+      qut14: this.state.tq14,
+      qut15: this.state.tq15,
+      qut16: this.state.tq16,
+      qut17: this.state.tq17,
+      qut18: this.state.tq18,
+      qut19: this.state.tq19,
+      qut20: this.state.tq20,
+      qut21: this.state.tq21,
+      qut22: this.state.tq22,
+      qut23: this.state.tq23,
+      qut24: this.state.tq24,
+    };
+    Axios.post('http://localhost:4000/submit', order)
+      .then(response => {
+        console.log('', response);
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     this.props.navigation.navigate('Signature');
   };
 }
