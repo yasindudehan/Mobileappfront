@@ -38,6 +38,173 @@ class SalesInvoice extends React.Component {
     super(props);
 
     this.state = {
+//       salesrepName:"",
+//       customerName:"",
+//       invoiceNo:'0',
+//       teapouch20:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//        teapouch20:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch20:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch20:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch50:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch100:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch200:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch400:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teapouch1kg1:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teapouch1kg2:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teapouch1kg3:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teapouch1kg4:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teabag1:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teabag2:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teabag3:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teasachet1:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teasachet2:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teasachet3:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//      teabulk1:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabulk2:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabulk3:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabulk4:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//       teabulk5:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabulk6:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabottle:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabasket1:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     teabasket2:{
+//         name:'',
+//         weight:'',
+//         qut:'',
+//         price:''
+//       },
+//     orderDate:'',
+    
       tq1: '0',
       tq2: '0',
       tq3: '0',
@@ -246,8 +413,8 @@ class SalesInvoice extends React.Component {
                     borderBottomWidth: 0,
                   }}>
                   <TextInput
-                    value={this.state.tq1}
-                    onChangeText={tq1 => this.setState({tq1})}
+                    value={this.state.tq1}//value={this.state.teapouch20.qut}
+                    onChangeText={tq1 => this.setState({tq1})}  //onchange fumction
                     placeholder="____"
                     numeric
                     keyboardType="numeric"
@@ -272,7 +439,7 @@ class SalesInvoice extends React.Component {
                     borderBottomWidth: 0,
                   }}>
                   <Text style={{marginTop: 10}}>
-                    {(this.state.tq1 * 30).toFixed(2)}
+                    {(this.state.tq1 * 30).toFixed(2)}//this.state.teapouch20.qut
                   </Text>
                 </View>
               </View>
@@ -2034,6 +2201,131 @@ class SalesInvoice extends React.Component {
       qut22: this.state.tq22,
       qut23: this.state.tq23,
       qut24: this.state.tq24,
+       //   totalValue: this.state.totalValue,
+      // salesrepName: this.state.salesrepName,
+//     customerName: this.state.customerName,
+//     Invoiceno: this.state.Invoiceno,
+//     teapouch20: this.state.teapouch20,
+//     name: this.state.name,             or this.state.teapouch20.name
+//     weight: this.state.weight,
+//     qut: this.state.qut,
+//     price: this.state.price,
+//     teapouch50: req.body.teapouch50,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch100: req.body.teapouch100,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch200: req.body.teapouch200,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch400: req.body.teapouch400,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch1kg1: req.body.teapouch1kg1,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch1kg2: req.body.teapouch1kg2,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch1kg3: req.body.teapouch1kg3,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teapouch1kg4: req.body.teapouch1kg4,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabag1: req.body.teabag1,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabag2: req.body.teabag2,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabag3: req.body.teabag3,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teasachet1: req.body.teasachet1,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teasachet2: req.body.teasachet2,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teasachet3: req.body.teasachet3,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk1: req.body.teabulk1,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk2: req.body.teabulk2,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk3: req.body.teabulk3,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk4: req.body.teabulk4,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk5: req.body.teabulk5,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabulk6: req.body.teabulk6,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabottle: req.body.teabottle,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabasket1: req.body.teabasket1,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price,
+//     teabasket2: req.body.teabasket2,
+//     name: req.body.name,
+//     weight: req.body.weight,
+//     qut: req.body.qut,
+//     price: req.body.price
+  
     };
     Axios.post('http://localhost:4000/submit', order)
       .then(response => {
