@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import {Container, Header, Content, Text, Button, Toast} from 'native-base';
 const Info = {
-  userId: 'Sadmin',
+  userId: 'kasun',
   password: '12345',
 };
 const Info1 = {
-  userId1: 'Dadmin',
+  userId1: 'shalitha',
   password1: '12345',
 };
 
@@ -31,7 +31,7 @@ export default class LoginScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+        <StatusBar backgroundColor="#00363a" barStyle="light-content" />
         <ImageBackground
           source={require('./Image/Logo.png')}
           style={styles.backgroundimage}
@@ -40,7 +40,7 @@ export default class LoginScreen extends Component {
           onChangeText={userId => this.setState({userId})}
           value={this.state.userId}
           style={styles.input}
-          placeholder="USER ID"
+          placeholder="USERNAME"
         />
         <TextInput
           onChangeText={password => this.setState({password})}
@@ -69,11 +69,7 @@ export default class LoginScreen extends Component {
       await AsyncStorage.setItem('logged', '2');
       this.props.navigation.navigate('App1');
     } else {
-      Toast.show({
-        text: 'Wrong password!',
-        buttonText: 'Okay',
-        duration: 3000,
-      });
+      alert('Wrong password');
     }
   };
 }
@@ -94,7 +90,7 @@ const styles = (StyleSheet.cretate = {
   },
   button: {
     margin: 10,
-    backgroundColor: '#353738',
+    backgroundColor: '#006064',
     width: 260,
     height: 50,
   },
