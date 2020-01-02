@@ -21,7 +21,7 @@ import {View, TouchableOpacity, ScrollView} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 
 export default class SelectRoute extends React.Component {
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
     super(props);
     this.state = {
@@ -36,12 +36,12 @@ export default class SelectRoute extends React.Component {
   }
   render() {
     return (
-      <Container style={{backgroundColor: '#2bbbad'}}>
+      <Container style={{backgroundColor: '#00363a'}}>
         <Text style={{marginLeft: 5, fontFamily: 'Cochin', fontWeight: 'bold'}}>
           Select Route
         </Text>
 
-        <Card style={{backgroundColor: '#6a6b6b'}}>
+        <Card style={{backgroundColor: '#428e92'}}>
           <Form>
             <Picker
               style={{witdth: 0}}
@@ -60,36 +60,39 @@ export default class SelectRoute extends React.Component {
           Select Customer
         </Text>
         <Content>{this.selectpickerDisplay()}</Content>
-
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#58eb34',
-            margin: 20,
-            marginLeft: 200,
-            width: 100,
-            height: 50,
-            borderRadius: 20,
-          }}
-          onPress={this.NextPage}>
-          <Text
+        <Content>
+          <TouchableOpacity
             style={{
-              color: 'white',
-              textAlign: 'center',
-              marginTop: 10,
-              fontSize: 20,
-              fontWeight: 'bold',
-              overflow: 'hidden',
-            }}>
-            Next
-          </Text>
-        </TouchableOpacity>
+              backgroundColor: '#00363a',
+              margin: 20,
+              marginLeft: 200,
+              width: 100,
+              height: 50,
+              borderRadius: 20,
+              borderWidth: 2,
+              borderColor: '#428e92',
+            }}
+            onPress={this.NextPage}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                marginTop: 10,
+                fontSize: 20,
+                fontWeight: 'bold',
+                overflow: 'hidden',
+              }}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        </Content>
       </Container>
     );
   }
   selectpickerDisplay = () => {
     if (this.state.selected === '1') {
       return (
-        <Card style={{backgroundColor: '#6a6b6b'}}>
+        <Card style={{backgroundColor: '#428e92'}}>
           <ScrollView>
             <ListItem selected={false}>
               <Left>

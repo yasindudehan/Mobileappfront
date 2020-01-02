@@ -5,7 +5,7 @@ import {Container, Content} from 'native-base';
 // create a component
 class SubmitOrder extends Component {
   static navigationOptions = {
-    headerStyle: {backgroundColor: '#2bbbad'},
+    headerStyle: {backgroundColor: '#005f63'},
   };
   render() {
     return (
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
 });
 

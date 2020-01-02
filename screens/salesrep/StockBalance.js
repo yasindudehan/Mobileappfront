@@ -375,6 +375,6 @@ export default class StockBalanceScreen extends Component {
 const styles = (StyleSheet.stockBalance = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
 });

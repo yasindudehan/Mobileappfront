@@ -48,7 +48,7 @@ class UpdateProfile extends React.Component {
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   onPress={this.Update}>
-                  <Text>Update</Text>
+                  <Text style={{color: 'white'}}>Update</Text>
                 </TouchableOpacity>
               </Right>
             </Form>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     //   justifyContent: 'center',
     //  alignItems: 'center',
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   buttonContainer: {
     marginTop: 10,
@@ -79,7 +79,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#00363a',
+    borderWidth: 3,
+    borderColor: '#006064',
   },
 });
 

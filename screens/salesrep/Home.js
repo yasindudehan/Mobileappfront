@@ -33,9 +33,10 @@ import {
 export default class HomeScreen extends Component {
   render() {
     return (
-      <Container style={{backgroundColor: '#2bbbad'}}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
-        <Header style={{backgroundColor: '#124d04'}}>
+      <Container style={{backgroundColor: '#37474f'}}>
+        <Image source={require('../Image/tea.jpg')} style={{opacity: 0.5}} />
+        <StatusBar backgroundColor="#00363a" barStyle="light-content" />
+        <Header style={{backgroundColor: '#006064'}}>
           <Body>
             <Right>
               <Image
@@ -52,7 +53,7 @@ export default class HomeScreen extends Component {
 const styles = (StyleSheet.home = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   flexd: {
     flexDirection: 'row',
