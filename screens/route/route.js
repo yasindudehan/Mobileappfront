@@ -113,7 +113,7 @@ const AppStack = createMaterialTopTabNavigator(
   {
     tabBarOptions: {
       style: {
-        backgroundColor: '#004a00', //color you want to change
+        backgroundColor: '#006064', //color you want to change
       },
 
       labelStyle: {
@@ -137,7 +137,7 @@ const App1Stack = createMaterialTopTabNavigator(
   {
     tabBarOptions: {
       style: {
-        backgroundColor: '#004a00', //color you want to change
+        backgroundColor: '#006064', //color you want to change
       },
 
       labelStyle: {
