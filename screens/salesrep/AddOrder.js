@@ -41,30 +41,31 @@ class OrderScreenS extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+        <StatusBar backgroundColor="#00363a" barStyle="light-content" />
 
         <View style={{alignItems: 'center'}}>
           <Text
-            style={{fontSize: 40, fontFamily: 'Cochin', fontWeight: 'bold'}}>
+            style={{
+              fontSize: 40,
+              fontFamily: 'Cochin',
+              fontWeight: 'bold',
+              color: '#428e92',
+            }}>
             Add Order
           </Text>
           <TouchableOpacity
             style={{
-              backgroundColor: 'skyblue',
-              width: 70,
-              height: 70,
+              backgroundColor: '#00363a',
+              width: 71,
+              height: 71,
               borderRadius: 100,
+             
+              borderColor: '#428e92',
             }}
             onPress={this.newOrder}>
-            <Text
-              style={{
-                fontSize: 50,
-                textAlign: 'center',
-                fontFamily: 'Cochin',
-                fontWeight: 'bold',
-              }}>
-              +
-            </Text>
+            <Image source={require('../Image/add.png')}
+              style={{width:90,height: 90,}}/>
+           
           </TouchableOpacity>
         </View>
       </View>
@@ -79,7 +80,7 @@ class OrderScreenS extends React.Component {
 const styles = (StyleSheet.salesrepNeworder = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   routeText: {
     margin: 10,

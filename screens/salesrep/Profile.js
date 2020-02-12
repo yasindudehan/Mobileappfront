@@ -22,7 +22,7 @@ class ProfileScreenS extends React.Component {
       <Container>
         <Content style={styles.container}>
           <View>
-            <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+            <StatusBar backgroundColor="#00363a" barStyle="light-content" />
             <View style={styles.header}></View>
 
             <Image
@@ -42,12 +42,13 @@ class ProfileScreenS extends React.Component {
                   <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={this.nextPage}>
-                    <Text>Profile Update</Text>
+                    <Text style={{color: 'white'}}>Profile Update</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={styles.buttonContainer}
+                   style={styles.buttonContainer}
                     onPress={this.LogOut}>
-                    <Text>Log Out</Text>
+                  <Text style={{color: 'white'}}>Log Out</Text>
+                 
                   </TouchableOpacity>
                 </Form>
               </View>
@@ -69,7 +70,7 @@ class ProfileScreenS extends React.Component {
 const styles = (StyleSheet.salesrepProfile = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   backlogo: {
     width: 40,
@@ -77,8 +78,8 @@ const styles = (StyleSheet.salesrepProfile = {
     margin: 0,
   },
   header: {
-    backgroundColor: '#a8f58e',
-    height: 100,
+    backgroundColor: '#006064',
+    height: 90,
   },
   avatar: {
     width: 130,
@@ -129,7 +130,11 @@ const styles = (StyleSheet.salesrepProfile = {
     marginBottom: 30,
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#00363a',
+    borderWidth: 3,
+    borderColor: '#428e92',
+
+    paddingHorizontal: 25,
   },
   input: {
     width: 250,

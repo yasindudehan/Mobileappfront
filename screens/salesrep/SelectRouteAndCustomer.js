@@ -12,36 +12,87 @@ import {
   ListItem,
   Left,
   Right,
-  Radio,
   List,
   Button,
   Footer,
+  Radio,
+  Body,
 } from 'native-base';
-import {View, TouchableOpacity, ScrollView} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import Axios from 'react-native-axios';
+import {
+  View,
+  TouchableOpacity,
+  ScrollView,
+  CheckBox,
+  Option,
+  Image,
+} from 'react-native';
+import {FlatList, TextInput} from 'react-native-gesture-handler';
 
 export default class SelectRoute extends React.Component {
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
     super(props);
     this.state = {
       selected: 'k',
       valueselected: false,
+      routes: [],
+      sRoute: '',
+      shops: [],
+      shopselect: '/',
+      isLoding: false,
+      custadd: '/',
     };
   }
+
+  async componentDidMount() {
+    await Axios.get('http://192.168.1.102:4000/select')
+      .then(res => {
+        this.setState({
+          routes: res.data,
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   onValueChange(value: string) {
     this.setState({
       selected: value,
     });
   }
+  updateRoute = sRoute => {
+    this.setState({sRoute: sRoute});
+    Axios.post('http://192.168.1.102:4000/select', {
+      route: sRoute,
+    })
+      .then(res => {
+        this.setState({
+          shops: res.data,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
+    const newArray = [];
+    this.state.routes.forEach(obj => {
+      if (!newArray.some(o => o.route === obj.route)) {
+        newArray.push({...obj});
+      }
+    });
+    console.log(newArray);
+
     return (
-      <Container style={{backgroundColor: '#2bbbad'}}>
+      <Container style={{backgroundColor: '#00363a'}}>
         <Text style={{marginLeft: 5, fontFamily: 'Cochin', fontWeight: 'bold'}}>
           Select Route
         </Text>
 
-        <Card style={{backgroundColor: '#6a6b6b'}}>
+        <Card style={{backgroundColor: '#428e92'}}>
           <Form>
             <Picker
               style={{witdth: 0}}
@@ -49,26 +100,89 @@ export default class SelectRoute extends React.Component {
               placeholder="Select One"
               placeholderStyle={{color: '#2874F0'}}
               note={true}
-              selectedValue={this.state.selected}
-              onValueChange={this.onValueChange.bind(this)}>
-              <Picker.Item label="Select Route" value="k" />
-              <Picker.Item label="Nugegoda" value="1" />
+              selectedValue={this.state.sRoute}
+              onValueChange={this.updateRoute}>
+              <Picker.Item label="Select  Route" value="non" />
+              {newArray.map(data => {
+                return (
+                  <Picker.Item
+                    label={data.route}
+                    value={data.route}
+                    key={data.route}
+                  />
+                );
+              })}
             </Picker>
           </Form>
         </Card>
         <Text style={{marginLeft: 5, fontFamily: 'Cochin', fontWeight: 'bold'}}>
           Select Customer
         </Text>
-        <Content>{this.selectpickerDisplay()}</Content>
+        <Content>
+          <Card style={{backgroundColor: '#428e92'}}>
+            <ScrollView>
+              {this.state.shops.map((shop, index) => {
+                return (
+                  <View>
+                    {this.state.shopselect == shop.shop ? (
+                      <TouchableOpacity key={shop._id}>
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                          <Text key={index} style={{margin: 5, flex: 1}}>
+                            {shop.shop}
+                          </Text>
+
+                          <Image
+                            style={{width: 20, height: 20, margin: 5}}
+                            source={require('../Image/True.png')}
+                            key={index}
+                          />
+                        </View>
+                        <Text style={{color: 'white'}}>
+                          ___________________________________________________________________
+                        </Text>
+                      </TouchableOpacity>
+                    ) : (
+                      <TouchableOpacity
+                        key={index}
+                        onPress={() => {
+                          this.setState({
+                            shopselect: shop.shop,
+                            custadd: shop.area,
+                          });
+                        }}>
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+                          <Text key={shop._id} style={{margin: 5, flex: 1}}>
+                            {shop.shop}
+                          </Text>
+
+                          <Image
+                            style={{width: 20, height: 20, margin: 5}}
+                            source={require('../Image/false.png')}
+                            key={index}
+                          />
+                        </View>
+                        <Text style={{color: 'white'}}>
+                          ___________________________________________________________________
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                );
+              })}
+            </ScrollView>
+          </Card>
+        </Content>
         <Content>
           <TouchableOpacity
             style={{
-              backgroundColor: '#58eb34',
+              backgroundColor: '#00363a',
               margin: 20,
               marginLeft: 200,
               width: 100,
               height: 50,
               borderRadius: 20,
+              borderWidth: 2,
+              borderColor: '#428e92',
             }}
             onPress={this.NextPage}>
             <Text
@@ -87,50 +201,15 @@ export default class SelectRoute extends React.Component {
       </Container>
     );
   }
-  selectpickerDisplay = () => {
-    if (this.state.selected === '1') {
-      return (
-        <Card style={{backgroundColor: '#6a6b6b'}}>
-          <ScrollView>
-            <ListItem selected={false}>
-              <Left>
-                <Text>Shop1</Text>
-              </Left>
-              <Right>
-                <Radio
-                  color={'#f0ad4e'}
-                  selectedColor={'#5cb85c'}
-                  selected={false}
-                />
-              </Right>
-            </ListItem>
 
-            <ListItem selected={false}>
-              <Left>
-                <Text>Shop3</Text>
-              </Left>
-              <Right>
-                <Radio
-                  color={'#f0ad4e'}
-                  selectedColor={'#5cb85c'}
-                  selected={true}
-                />
-              </Right>
-            </ListItem>
-          </ScrollView>
-        </Card>
-      );
-    } else if (this.state.selected !== 'k') {
-      return (
-        <Form>
-          <Text style={{margin: 10, fontSize: 50, color: 'red'}}>
-            No Customers
-          </Text>
-        </Form>
-      );
-    }
-  };
   NextPage = () => {
-    this.props.navigation.navigate('SalesInvoice');
+    if (this.state.shopselect !== '/') {
+      var customer = this.state.shopselect;
+      var custadd = this.state.custadd;
+      var customeradd = this.props.navigation.navigate('SalesInvoice', {
+        custName: customer,
+        custAddress: custadd,
+      });
+    }
   };
 }
