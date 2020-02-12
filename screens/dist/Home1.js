@@ -47,30 +47,9 @@ export default class HomeScreen extends Component {
             </Right>
           </Body>
         </Header>
-        <Tabs>
-          <Tab
-            heading={
-              <TabHeading style={{backgroundColor: '#124d04'}}>
-                <Text>PROFILE</Text>
-              </TabHeading>
-            }>
-            <Tab1 />
-			
-          </Tab>
-          <Tab
-            heading={
-              <TabHeading style={{backgroundColor: '#124d04'}}>
-                <Text>ADD ORDER</Text>
-              </TabHeading>
-            }>
-            <Tab2 />
-          </Tab>
-          
-        </Tabs>
       </Container>
     );
   }
- 
 }
 const styles = (StyleSheet.home = {
   container: {
@@ -80,7 +59,7 @@ const styles = (StyleSheet.home = {
   flexd: {
     flexDirection: 'row',
   },
-buttonContainer: {
+  buttonContainer: {
     marginTop: 10,
     height: 45,
     flexDirection: 'row',

@@ -10,7 +10,7 @@ class Signature extends Component {
     this.state = {signature: null};
   }
 
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -36,7 +36,7 @@ class Signature extends Component {
         />
 
         <View
-          style={{flex: 1, flexDirection: 'row', backgroundColor: '#2bbbad'}}>
+          style={{flex: 1, flexDirection: 'row', backgroundColor: '#00363a'}}>
           <TouchableHighlight
             style={styles.buttonStyle}
             onPress={() => {
@@ -82,7 +82,7 @@ class Signature extends Component {
     console.log('dragged');
   }
   nextPage = () => {
-    this.props.navigation.navigate('DistributorSign');
+    this.props.navigation.navigate('LastPage');
   };
 }
 
@@ -103,17 +103,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#00363a',
     margin: 10,
     width: 50,
+    borderWidth: 3,
+    borderColor: '#006064',
   },
   buttonStyle1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#58eb34',
+    backgroundColor: '#00363a',
     margin: 10,
+    borderWidth: 3,
+    borderColor: '#006064',
   },
 });
 

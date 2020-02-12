@@ -4,6 +4,9 @@ import {View, Text, StyleSheet} from 'react-native';
 
 // create a component
 class LastPage extends Component {
+  static navigationOptions = {
+    headerStyle: {backgroundColor: '#005f63'},
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#00363a',
   },
 });
 

@@ -1,5 +1,6 @@
 //import liraries
 import React, {Component} from 'react';
+import Axios from 'axios';
 import {
   View,
   StyleSheet,
@@ -36,11 +37,64 @@ class SalesInvoice extends React.Component {
     super(props);
 
     this.state = {
-      selecteds: '',
+      tq1: '0',
+      tq2: '0',
+      tq3: '0',
+      tq4: '0',
+      tq5: '0',
+      tq6: '0',
+      tq7: '0',
+      tq8: '0',
+      tq9: '0',
+      tq10: '0',
+      tq11: '0',
+      tq12: '0',
+      tq13: '0',
+      tq14: '0',
+      tq15: '0',
+      tq16: '0',
+      tq17: '0',
+      tq18: '0',
+      tq19: '0',
+      tq20: '0',
+      tq21: '0',
+      tq22: '0',
+      tq23: '0',
+      tq24: '0',
+      total: '0',
     };
   }
+  totalValue = totatvalue => {
+    var totalValue =
+      parseInt(this.state.tq1) * 30.0 +
+      parseInt(this.state.tq2) * 50.0 +
+      parseInt(this.state.tq3) * 100.0 +
+      parseInt(this.state.tq4) * 200.0 +
+      parseInt(this.state.tq5) * 400.0 +
+      parseInt(this.state.tq6) * 800.0 +
+      parseInt(this.state.tq7) * 800.0 +
+      parseInt(this.state.tq8) * 700.0 +
+      parseInt(this.state.tq9) * 300.0 +
+      parseInt(this.state.tq10) * 500.0 +
+      parseInt(this.state.tq11) * 500.0 +
+      parseInt(this.state.tq12) * 800.0 +
+      parseInt(this.state.tq13) * 300.0 +
+      parseInt(this.state.tq14) * 500.0 +
+      parseInt(this.state.tq15) * 800.0 +
+      parseInt(this.state.tq16) * 3200.0 +
+      parseInt(this.state.tq17) * 3200.0 +
+      parseInt(this.state.tq18) * 3200.0 +
+      parseInt(this.state.tq19) * 20000.0 +
+      parseInt(this.state.tq20) * 20000.0 +
+      parseInt(this.state.tq21) * 30000.0 +
+      parseInt(this.state.tq22) * 350.0 +
+      parseInt(this.state.tq23) * 2200.0 +
+      parseInt(this.state.tq24) * 2200.0;
+    totalValue = totalValue.toFixed(2);
+    this.setState({total: totalValue});
+  };
 
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
   render() {
     return (
       <Container style={styles.container}>
@@ -189,7 +243,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq1}
+                    onChangeText={tq1 => this.setState({tq1})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -199,7 +259,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>...</Text>
+                  <Text>30</Text>
                 </View>
                 <View
                   style={{
@@ -209,7 +269,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>....</Text>
+                  <Text> {parseInt(this.state.tq1) * 30.0}</Text>
                 </View>
               </View>
               <View
@@ -250,7 +310,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq2}
+                    onChangeText={tq2 => this.setState({tq2})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -260,7 +326,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>50</Text>
                 </View>
                 <View
                   style={{
@@ -270,7 +336,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq2) * 50.0}</Text>
                 </View>
               </View>
               <View
@@ -311,7 +377,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq3}
+                    onChangeText={tq3 => this.setState({tq3})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -321,7 +393,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>100</Text>
                 </View>
                 <View
                   style={{
@@ -331,7 +403,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq3) * 100.0}</Text>
                 </View>
               </View>
               <View
@@ -372,7 +444,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq4}
+                    onChangeText={tq4 => this.setState({tq4})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -382,7 +460,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>200</Text>
                 </View>
                 <View
                   style={{
@@ -392,7 +470,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq4) * 200.0}</Text>
                 </View>
               </View>
               <View
@@ -433,7 +511,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq5}
+                    onChangeText={tq5 => this.setState({tq5})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -443,7 +527,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>400</Text>
                 </View>
                 <View
                   style={{
@@ -453,7 +537,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq5) * 400.0}</Text>
                 </View>
               </View>
               <View
@@ -515,7 +599,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq6}
+                    onChangeText={tq6 => this.setState({tq6})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -525,7 +615,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>800</Text>
                 </View>
                 <View
                   style={{
@@ -535,7 +625,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq6) * 800.0}</Text>
                 </View>
               </View>
               <View
@@ -576,7 +666,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq7}
+                    onChangeText={tq7 => this.setState({tq7})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -586,7 +682,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>800</Text>
                 </View>
                 <View
                   style={{
@@ -596,7 +692,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq7) * 800.0}</Text>
                 </View>
               </View>
               <View
@@ -637,7 +733,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq8}
+                    onChangeText={tq8 => this.setState({tq8})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -647,7 +749,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>700</Text>
                 </View>
                 <View
                   style={{
@@ -657,7 +759,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq8) * 700.0}</Text>
                 </View>
               </View>
               <View
@@ -698,7 +800,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq9}
+                    onChangeText={tq9 => this.setState({tq9})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -708,7 +816,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>300</Text>
                 </View>
                 <View
                   style={{
@@ -718,7 +826,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq9) * 300.0}</Text>
                 </View>
               </View>
               <View
@@ -780,7 +888,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq10}
+                    onChangeText={tq10 => this.setState({tq10})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -790,7 +904,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>500</Text>
                 </View>
                 <View
                   style={{
@@ -800,7 +914,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq10) * 500.0}</Text>
                 </View>
               </View>
               <View
@@ -841,7 +955,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq11}
+                    onChangeText={tq11 => this.setState({tq11})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -851,7 +971,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>500</Text>
                 </View>
                 <View
                   style={{
@@ -861,7 +981,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq11) * 500.0}</Text>
                 </View>
               </View>
               <View
@@ -902,7 +1022,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq12}
+                    onChangeText={tq12 => this.setState({tq12})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -912,7 +1038,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>800</Text>
                 </View>
                 <View
                   style={{
@@ -922,7 +1048,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq12) * 800.0}</Text>
                 </View>
               </View>
               <View
@@ -984,7 +1110,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq13}
+                    onChangeText={tq13 => this.setState({tq13})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -994,7 +1126,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>300</Text>
                 </View>
                 <View
                   style={{
@@ -1004,7 +1136,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq13) * 300.0}</Text>
                 </View>
               </View>
               <View
@@ -1045,7 +1177,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq14}
+                    onChangeText={tq14 => this.setState({tq14})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1055,7 +1193,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>500</Text>
                 </View>
                 <View
                   style={{
@@ -1065,7 +1203,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq14) * 500.0}</Text>
                 </View>
               </View>
               <View
@@ -1106,7 +1244,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq15}
+                    onChangeText={tq15 => this.setState({tq15})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1116,7 +1260,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>800</Text>
                 </View>
                 <View
                   style={{
@@ -1126,7 +1270,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq15) * 800.0}</Text>
                 </View>
               </View>
               <View
@@ -1188,7 +1332,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq16}
+                    onChangeText={tq16 => this.setState({tq16})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1198,7 +1348,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>3200</Text>
                 </View>
                 <View
                   style={{
@@ -1208,7 +1358,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq16) * 3200.0}</Text>
                 </View>
               </View>
               <View
@@ -1249,7 +1399,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq17}
+                    onChangeText={tq17 => this.setState({tq17})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1259,7 +1415,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>3200</Text>
                 </View>
                 <View
                   style={{
@@ -1269,7 +1425,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq17) * 3200.0}</Text>
                 </View>
               </View>
               <View
@@ -1310,7 +1466,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq18}
+                    onChangeText={tq18 => this.setState({tq18})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1320,7 +1482,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>3200</Text>
                 </View>
                 <View
                   style={{
@@ -1330,7 +1492,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq18) * 3200.0}</Text>
                 </View>
               </View>
               <View
@@ -1371,7 +1533,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq19}
+                    onChangeText={tq19 => this.setState({tq19})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1381,7 +1549,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>20000</Text>
                 </View>
                 <View
                   style={{
@@ -1391,7 +1559,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq19) * 20000.0}</Text>
                 </View>
               </View>
               <View
@@ -1432,7 +1600,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq20}
+                    onChangeText={tq20 => this.setState({tq20})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1442,7 +1616,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>20000</Text>
                 </View>
                 <View
                   style={{
@@ -1452,7 +1626,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq20) * 20000.0}</Text>
                 </View>
               </View>
               <View
@@ -1493,7 +1667,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq21}
+                    onChangeText={tq21 => this.setState({tq21})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1503,7 +1683,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>30000</Text>
                 </View>
                 <View
                   style={{
@@ -1513,7 +1693,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq21) * 30000.0}</Text>
                 </View>
               </View>
               <View
@@ -1575,7 +1755,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq22}
+                    onChangeText={tq22 => this.setState({tq22})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1585,7 +1771,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>350</Text>
                 </View>
                 <View
                   style={{
@@ -1595,7 +1781,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq22) * 350.0}</Text>
                 </View>
               </View>
               <View
@@ -1657,7 +1843,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq23}
+                    onChangeText={tq23 => this.setState({tq23})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1667,7 +1859,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>2200</Text>
                 </View>
                 <View
                   style={{
@@ -1677,7 +1869,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq23) * 2200.0}</Text>
                 </View>
               </View>
               <View
@@ -1718,7 +1910,13 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <TextInput placeholder="____" />
+                  <TextInput
+                    value={this.state.tq24}
+                    onChangeText={tq24 => this.setState({tq24})}
+                    placeholder="____"
+                    numeric
+                    keyboardType="numeric"
+                  />
                 </View>
                 <View
                   style={{
@@ -1728,7 +1926,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>.....</Text>
+                  <Text>2200</Text>
                 </View>
                 <View
                   style={{
@@ -1738,7 +1936,7 @@ class SalesInvoice extends React.Component {
                     borderColor: 'green',
                     borderBottomWidth: 0,
                   }}>
-                  <Text>........</Text>
+                  <Text>{parseInt(this.state.tq24) * 2200.0}</Text>
                 </View>
               </View>
             </Table>
@@ -1772,7 +1970,7 @@ class SalesInvoice extends React.Component {
                     borderBottomWidth: 0,
                     backgroundColor: '#BDFDB3',
                   }}>
-                  <Text>here</Text>
+                  <Text onPress={this.totalValue}>Rs {this.state.total}</Text>
                 </View>
               </View>
             </Table>
@@ -1782,12 +1980,14 @@ class SalesInvoice extends React.Component {
         <TouchableOpacity
           onPress={this.nextPage}
           style={{
-            backgroundColor: '#58eb34',
+            backgroundColor: '#00363a',
             margin: 20,
             marginLeft: 200,
             width: 100,
             height: 50,
             borderRadius: 20,
+            borderWidth: 2,
+            borderColor: '#006064',
           }}>
           <Text
             style={{
@@ -1804,7 +2004,104 @@ class SalesInvoice extends React.Component {
       </Container>
     );
   }
-  nextPage = () => {
+  nextPage = e => {
+    e.preventDefault();
+    const order = {
+      teapouch20: {
+        qut: this.state.tq1,
+        price: parseInt(this.state.tq1) * 30.0,
+      },
+      teapouch50: {qut: this.state.tq2, price: parseInt(this.state.tq2) * 50.0},
+      teapouch100: {
+        qut: this.state.tq3,
+        price: parseInt(this.state.tq3) * 100.0,
+      },
+      teapouch200: {
+        qut: this.state.tq4,
+        price: parseInt(this.state.tq4) * 200.0,
+      },
+      teapouch400: {
+        qut: this.state.tq5,
+        price: parseInt(this.state.tq5) * 400.0,
+      },
+      teapouch1kg1: {
+        qut: this.state.tq6,
+        price: parseInt(this.state.tq6) * 800.0,
+      },
+      teapouch1kg2: {
+        qut: this.state.tq7,
+        price: parseInt(this.state.tq7) * 800.0,
+      },
+      teapouch1kg3: {
+        qut: this.state.tq8,
+        price: parseInt(this.state.tq8) * 700.0,
+      },
+      teapouch1kg4: {
+        qut: this.state.tq9,
+        price: parseInt(this.state.tq9) * 300.0,
+      },
+      teabag1: {qut: this.state.tq10, price: parseInt(this.state.tq10) * 500.0},
+      teabag2: {qut: this.state.tq11, price: parseInt(this.state.tq11) * 500.0},
+      teabag3: {qut: this.state.tq12, price: parseInt(this.state.tq12) * 800.0},
+      teasachet1: {
+        qut: this.state.tq13,
+        price: parseInt(this.state.tq13) * 300.0,
+      },
+      teasachet2: {
+        qut: this.state.tq14,
+        price: parseInt(this.state.tq14) * 500.0,
+      },
+      teasachet3: {
+        qut: this.state.tq15,
+        price: parseInt(this.state.tq15) * 800.0,
+      },
+      teabulk1: {
+        qut: this.state.tq16,
+        price: parseInt(this.state.tq16) * 3200.0,
+      },
+      teabulk2: {
+        qut: this.state.tq17,
+        price: parseInt(this.state.tq17) * 3200.0,
+      },
+      teabulk3: {
+        qut: this.state.tq18,
+        price: parseInt(this.state.tq18) * 3200.0,
+      },
+      teabulk4: {
+        qut: this.state.tq19,
+        price: parseInt(this.state.tq19) * 20000.0,
+      },
+      teabulk5: {
+        qut: this.state.tq20,
+        price: parseInt(this.state.tq20) * 20000.0,
+      },
+      teabulk6: {
+        qut: this.state.tq21,
+        price: parseInt(this.state.tq21) * 30000.0,
+      },
+      teabottle: {
+        qut: this.state.tq22,
+        price: parseInt(this.state.tq22) * 350.0,
+      },
+      teabasket1: {
+        qut: this.state.tq23,
+        price: parseInt(this.state.tq23) * 2200.0,
+      },
+      teabasket2: {
+        qut: this.state.tq24,
+        price: parseInt(this.state.tq24) * 2200.0,
+      },
+      totalValue: this.state.total,
+    };
+    Axios.post('http://192.168.1.103:4000/stock/submit', order)
+      .then(response => {
+        console.log('', response);
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     this.props.navigation.navigate('SubmitOrder');
   };
 }
@@ -1812,7 +2109,7 @@ class SalesInvoice extends React.Component {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   invoiceMain: {
     marginBottom: 20,
