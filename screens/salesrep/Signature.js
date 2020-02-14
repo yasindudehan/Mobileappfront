@@ -31,7 +31,6 @@ class Signature extends Component {
             fontWeight: 'bold',
             fontFamily: 'Cochin',
           }}>
-          {this.state.order}
         </Text>
 
         <SignatureCapture

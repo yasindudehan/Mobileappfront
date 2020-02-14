@@ -80,7 +80,7 @@ class SalesInvoice extends React.Component {
       CustomerName: JSON.stringify(this.props.navigation.getParam('custName')),
     });
   };
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     var that = this;
     //Checking for the permission just after component loaded
 

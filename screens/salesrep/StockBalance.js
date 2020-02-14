@@ -281,7 +281,7 @@ export default class StockBalanceScreen extends Component {
                         backgroundColor: 'white',
                         margin: 1,
                       }}>
-                      <Text style={{textAlign: 'center', FontSize: 10}} key={i}>
+                      <Text style={{textAlign: 'center', fontSize: 10}} key={i}>
                         {products[p].weight}
                       </Text>
                     </View>
@@ -293,7 +293,7 @@ export default class StockBalanceScreen extends Component {
                       }}>
                       <Text
                         name={products[p].name + products[p].weight}
-                        style={{textAlign: 'center', FontSize: 10}}
+                        style={{textAlign: 'center', fontSize: 10}}
                         key={i}>
                         {products[p].rate}
                       </Text>
@@ -305,11 +305,11 @@ export default class StockBalanceScreen extends Component {
                         margin: 1,
                       }}>
                       <TextInput
-                        style={{textAlign: 'center', FontSize: 10}}
+                        style={{textAlign: 'center', fontSize: 10}}
                         keyboardType="numeric"
                         placeholder="____"
                         name={products[p].name + products[p].weight}
-                        value={qut}
+                        value={qut.toString()}
                         key={i}
                         onChangeText={qut =>
                           this.qutchange(
@@ -327,7 +327,7 @@ export default class StockBalanceScreen extends Component {
                       }}>
                       <Text
                         name={products[p].name + products[p].weight}
-                        style={{textAlign: 'center', FontSize: 10}}
+                        style={{textAlign: 'center', fontSize: 10}}
                         key={i}>
                         {price_arr[[products[p].name + products[p].weight]]}
                       </Text>

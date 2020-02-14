@@ -30,10 +30,14 @@ export default class LoginScreen extends Component {
     this.state = {userId: '', password: ''};
   }
   async componentDidMount() {
+    try{
     await Axios(`http://${IP}:4000/login/signIn`, {
       username: this.state.userId,
       password: this.state.password,
-    });
+    })
+  }catch(err){
+    console.log(err);
+  }
   }
   render() {
     // const { navigate } = this.props.navigation;
