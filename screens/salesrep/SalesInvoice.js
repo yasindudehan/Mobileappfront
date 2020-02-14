@@ -34,6 +34,8 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import Date from './Date';
 import {green} from 'ansi-colors';
+import { IP} from 'react-native-dotenv';
+
 // create a component
 var quts_arr = [];
 var rate_arr = [];
@@ -61,7 +63,7 @@ class SalesInvoice extends React.Component {
     };
   }
   componentDidMount = () => {
-    Axios.get('http://192.168.1.104:4000/product')
+    Axios.get(`http://${IP}:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -572,7 +574,7 @@ class SalesInvoice extends React.Component {
       totalValue: this.state.totalValue,
     };
     if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
-      Axios.post('http://192.168.1.104:4000/order/submit', order)
+      Axios.post(`http://${IP}:4000/order/submit`, order)
         .then(response => {
           console.log('', response);
           console.log(response.data);

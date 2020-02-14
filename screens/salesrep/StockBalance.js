@@ -44,6 +44,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import Date from './Date';
 import {TabNavigator} from 'react-navigation';
 import Geolocation from '@react-native-community/geolocation';
+import { IP} from 'react-native-dotenv';
 
 var quts_arr = [];
 var rate_arr = [];
@@ -157,7 +158,7 @@ export default class StockBalanceScreen extends Component {
       });
   }*/
   componentDidMount = () => {
-    Axios.get('http://192.168.1.104:4000/product')
+    Axios.get(`http://${IP}:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,

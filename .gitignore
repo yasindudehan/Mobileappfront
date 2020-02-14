@@ -1,3 +1,5 @@
 build/
 .gradle
 node_modules
+.env
+debug.keystore

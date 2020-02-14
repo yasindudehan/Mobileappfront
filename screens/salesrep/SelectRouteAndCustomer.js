@@ -29,7 +29,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {FlatList, TextInput} from 'react-native-gesture-handler';
-
+import { IP} from 'react-native-dotenv';
 export default class SelectRoute extends React.Component {
   static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
@@ -47,7 +47,7 @@ export default class SelectRoute extends React.Component {
   }
 
   async componentDidMount() {
-    await Axios.get('http://192.168.1.104:4000/select')
+    await Axios.get(`http://${IP}:4000/customer/select`)
       .then(res => {
         this.setState({
           routes: res.data,
@@ -65,7 +65,7 @@ export default class SelectRoute extends React.Component {
   }
   updateRoute = sRoute => {
     this.setState({sRoute: sRoute});
-    Axios.post('http://192.168.1.104:4000/select', {
+    Axios.post(`http://${IP}:4000/customer/select`, {
       route: sRoute,
     })
       .then(res => {

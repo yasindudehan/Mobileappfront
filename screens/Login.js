@@ -10,6 +10,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {Container, Header, Content, Text, Button, Toast} from 'native-base';
+import { IP} from 'react-native-dotenv';
+
 const Info = {
   userId: 'kasun',
   password: '12345',
@@ -28,7 +30,7 @@ export default class LoginScreen extends Component {
     this.state = {userId: '', password: ''};
   }
   async componentDidMount() {
-    await Axios('http://192.168.1.102:4000/login/signIn', {
+    await Axios(`http://${IP}:4000/login/signIn`, {
       username: this.state.userId,
       password: this.state.password,
     });

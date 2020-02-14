@@ -28,7 +28,7 @@ import {
   Cols,
   Cell,
 } from 'react-native-table-component';
-
+import { IP} from 'react-native-dotenv';
 import Date from './Date';
 import {green} from 'ansi-colors';
 // create a component
@@ -2093,7 +2093,7 @@ class SalesInvoice extends React.Component {
       },
       totalValue: this.state.total,
     };
-    Axios.post('http://192.168.1.103:4000/stock/submit', order)
+    Axios.post(`http://${IP}:4000/stock/submit`, order)
       .then(response => {
         console.log('', response);
         console.log(response.data);
