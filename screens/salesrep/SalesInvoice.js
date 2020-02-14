@@ -37,10 +37,11 @@ import {green} from 'ansi-colors';
 import { IP} from 'react-native-dotenv';
 
 // create a component
+var len=24;
 var quts_arr = [];
 var rate_arr = [];
 var price_arr = [];
-var total = 0;
+//var total = 0;
 class SalesInvoice extends React.Component {
   constructor(props) {
     super(props);
@@ -597,17 +598,30 @@ class SalesInvoice extends React.Component {
     this.setState({rates: rate_arr});
     this.setState({quts: quts_arr});
     this.setState({prices: price_arr});
-
+    var total=0;
+    {Object.keys(this.state.products).map((p, i) => {
+      if(price_arr[[ this.state.products[p].name +this.state.products[p].weight]]!==undefined){
+        total = total + price_arr[[ this.state.products[p].name +this.state.products[p].weight]];
+      }
+     // }
+      
+    })};
+    this.setState({totalValue: total});
     //console.warn(this.state.totalValue);
     //console.warn(price_arr[[i]]);
     // this.setState({[quts[i]]: e});
     //  console.warn(totalvalue);
-    total = total + price_arr[[i]];
-    this.setState({totalValue: total});
+    /* total = total + price_arr[[i]];
+    this.setState({totalValue: total}) */;
   };
-  totalValue = () => {
-    console.warn('fjsfsdkjfsjl');
-  };
+ /*  totalValue(){
+    let total=0;
+    for(let i = 0; i < this.state.products.length; i++){
+      total = total + price_arr[[i]];
+      
+    }
+    this.setState({totalValue: total}) 
+  }; */
 }
 
 // define your styles
