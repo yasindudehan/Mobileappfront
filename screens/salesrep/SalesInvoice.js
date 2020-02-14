@@ -54,8 +54,8 @@ class SalesInvoice extends React.Component {
       rates: [],
       totalValue: 0,
       total: '0',
-      CustomerName: '',
-      CustomerAdd: '',
+      CustomerName:"",
+      CustomerAdd: "",
       products: [],
       pay_type: '/',
       currentLongitude: 'un',
@@ -75,10 +75,9 @@ class SalesInvoice extends React.Component {
         console.error(error);
       });
     this.setState({
-      CustomerAdd: JSON.stringify(
-        this.props.navigation.getParam('custAddress'),
-      ),
-      CustomerName: JSON.stringify(this.props.navigation.getParam('custName')),
+      CustomerAdd: 
+        this.props.navigation.getParam('custAddress'),      
+      CustomerName: this.props.navigation.getParam('custName'),
     });
   };
   async UNSAFE_componentWillMount() {
