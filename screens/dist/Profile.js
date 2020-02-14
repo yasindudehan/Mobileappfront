@@ -18,31 +18,39 @@ class ProfileScreenS extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
-        <View style={styles.header}></View>
-        <Image
-          style={styles.avatar}
-          source={{uri: 'http://www.hightiptv.com/images/image-profile-8.png'}}
-        />
-        <View style={styles.body}>
-          <View style={styles.bodyContent}>
-            <Text style={styles.name}>Shalitha Jayamal</Text>
-            <Text style={styles.info}>Sales Rep</Text>
-            <Text style={styles.description}>Works at Lavish pvt Lt </Text>
-            <Form>
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={this.nextPage}>
-                <Text>Profile Update</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer} onPress={this.LogOut}>
-                <Text>Log Out</Text>
-              </TouchableOpacity>
-            </Form>
+      <Container>
+        <Content style={styles.container}>
+          <View>
+            <StatusBar backgroundColor="#00363a" barStyle="light-content" />
+            <View style={styles.header}></View>
+            <Image
+              style={styles.avatar}
+              source={{
+                uri: 'http://www.hightiptv.com/images/image-profile-8.png',
+              }}
+            />
+            <View style={styles.body}>
+              <View style={styles.bodyContent}>
+                <Text style={styles.name}>Shalitha Jayamal</Text>
+                <Text style={styles.info}>Distributor</Text>
+                <Text style={styles.description}>Works at Lavish pvt Lt </Text>
+                <Form>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={this.nextPage}>
+                    <Text style={{color: 'white'}}>Profile Update</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={this.LogOut}>
+                    <Text style={{color: 'white'}}>Log Out</Text>
+                  </TouchableOpacity>
+                </Form>
+              </View>
+            </View>
           </View>
-        </View>
-      </View>
+        </Content>
+      </Container>
     );
   }
   nextPage = () => {
@@ -57,7 +65,7 @@ class ProfileScreenS extends React.Component {
 const styles = (StyleSheet.salesrepProfile = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   backlogo: {
     width: 40,
@@ -65,8 +73,8 @@ const styles = (StyleSheet.salesrepProfile = {
     margin: 0,
   },
   header: {
-    backgroundColor: '#a8f58e',
-    height: 200,
+    backgroundColor: '#006064',
+    height: 100,
   },
   avatar: {
     width: 130,
@@ -77,7 +85,7 @@ const styles = (StyleSheet.salesrepProfile = {
     marginBottom: 10,
     alignSelf: 'center',
     position: 'absolute',
-    marginTop: 130,
+    marginTop: 30,
   },
   name: {
     fontSize: 22,
@@ -117,7 +125,9 @@ const styles = (StyleSheet.salesrepProfile = {
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: '#00BFFF',
+    backgroundColor: '#00363a',
+    borderWidth: 3,
+    borderColor: '#428e92',
   },
   input: {
     width: 250,

@@ -52,13 +52,27 @@ class Signature extends Component {
             onPress={() => {
               this.saveSign();
             }}>
-            <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>Save</Text>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontFamily: 'Cochin',
+                color: 'white',
+              }}>
+              Save
+            </Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.buttonStyle1}
             onPress={this.nextPage}>
-            <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>Next</Text>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontFamily: 'Cochin',
+                color: 'white',
+              }}>
+              Next
+            </Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -82,7 +96,7 @@ class Signature extends Component {
     console.log('dragged');
   }
   nextPage = () => {
-    this.props.navigation.navigate('LastPage');
+    this.props.navigation.navigate('SubmitOrder');
   };
 }
 

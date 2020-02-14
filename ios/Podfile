@@ -31,6 +31,8 @@ target 'new1' do
 
   pod 'react-native-signature-capture', :path => '../node_modules/react-native-signature-capture'
 
+  pod 'react-native-mail', :path => '../node_modules/react-native-mail'
+
   target 'new1Tests' do
     inherit! :search_paths
     # Pods for testing

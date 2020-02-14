@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Axios from 'axios';
 import {
   StyleSheet,
   View,
@@ -10,11 +11,11 @@ import {
 } from 'react-native';
 import {Container, Header, Content, Text, Button, Toast} from 'native-base';
 const Info = {
-  userId: 'Sadmin',
+  userId: 'kasun',
   password: '12345',
 };
 const Info1 = {
-  userId1: 'Dadmin',
+  userId1: 'shalitha',
   password1: '12345',
 };
 
@@ -26,12 +27,18 @@ export default class LoginScreen extends Component {
     super(props);
     this.state = {userId: '', password: ''};
   }
+  async componentDidMount() {
+    await Axios('http://192.168.1.102:4000/login/signIn', {
+      username: this.state.userId,
+      password: this.state.password,
+    });
+  }
   render() {
     // const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
+        <StatusBar backgroundColor="#00363a" barStyle="light-content" />
         <ImageBackground
           source={require('./Image/Logo.png')}
           style={styles.backgroundimage}
@@ -40,7 +47,7 @@ export default class LoginScreen extends Component {
           onChangeText={userId => this.setState({userId})}
           value={this.state.userId}
           style={styles.input}
-          placeholder="USER ID"
+          placeholder="USERNAME"
         />
         <TextInput
           onChangeText={password => this.setState({password})}
@@ -69,13 +76,24 @@ export default class LoginScreen extends Component {
       await AsyncStorage.setItem('logged', '2');
       this.props.navigation.navigate('App1');
     } else {
-      Toast.show({
-        text: 'Wrong password!',
-        buttonText: 'Okay',
-        duration: 3000,
-      });
+      alert('Wrong password');
     }
   };
+  /* onSign = e => {
+    const userdata = {
+      username: this.state.userId,
+      password: this.state.password,
+    };
+    Axios.post('http://192.168.137.11:4000/login/signIn', userdata).then(
+      res => {
+        if (res.status === 200) {
+          this.props.navigation.navigate('App');
+        } else {
+          alert('ghjgjh');
+        }
+      },
+    );
+  };*/
 }
 
 const styles = (StyleSheet.cretate = {
@@ -94,7 +112,7 @@ const styles = (StyleSheet.cretate = {
   },
   button: {
     margin: 10,
-    backgroundColor: '#353738',
+    backgroundColor: '#006064',
     width: 260,
     height: 50,
   },

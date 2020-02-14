@@ -1,11 +1,15 @@
 //import liraries
 import React, {Component} from 'react';
+import Axios from 'axios';
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   Picker,
   TextInput,
+  PermissionsAndroid,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import {
   Container,
@@ -18,228 +22,596 @@ import {
   Left,
   Form,
 } from 'native-base';
-import SignatureCapture from 'react-native-signature-capture';
+import {
+  Table,
+  TableWrapper,
+  Row,
+  Rows,
+  Col,
+  Cols,
+  Cell,
+} from 'react-native-table-component';
+import Geolocation from '@react-native-community/geolocation';
 import Date from './Date';
+import {green} from 'ansi-colors';
 // create a component
+var quts_arr = [];
+var rate_arr = [];
+var price_arr = [];
+var total = 0;
 class SalesInvoice extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      selected: '0',
-      billpaid: 'not paid',
+      qut: 0,
+      quts: [],
+      price: 0,
+      prices: [],
+      rates: [],
+      totalValue: 0,
+      total: '0',
+      CustomerName: '',
+      CustomerAdd: '',
+      products: [],
+      pay_type: '/',
+      currentLongitude: 'un',
+      currentLatitude: 'un',
+      isLoaded: false,
     };
   }
-  onValueChange(value: string) {
+  componentDidMount = () => {
+    Axios.get('http://192.168.1.104:4000/product')
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          products: json.data[0],
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
     this.setState({
-      selected: value,
+      CustomerAdd: JSON.stringify(
+        this.props.navigation.getParam('custAddress'),
+      ),
+      CustomerName: JSON.stringify(this.props.navigation.getParam('custName')),
     });
+  };
+  async componentWillMount() {
+    var that = this;
+    //Checking for the permission just after component loaded
+
+    if (Platform.OS === 'ios') {
+      this.callLocation(that);
+    } else {
+      async function requestLocationPermission() {
+        try {
+          const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            {
+              title: 'Location Access Required',
+              message: 'This App needs to Access your location',
+            },
+          );
+
+          if (true) {
+            //To Check, If Permission is granted
+
+            that.callLocation(that);
+          } else {
+            alert('Permission Denied');
+          }
+        } catch (err) {
+          alert('err', err);
+          console.warn(err);
+        }
+      }
+      requestLocationPermission();
+    }
   }
-  onPaid(value: string) {
-    this.setState({
-      billpaid: value,
-    });
-  }
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
-  render() {
-    const {navigation} = this.props;
-    //const customerSign = navigation.getParam(' customerSign', 'NO-User');
-    var signature = navigation.params
-      ? navigation.params.signature
-      : '<undefined>';
-    return (
-      <Container style={styles.container}>
-        <Content padder>
-          <Card>
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      fontSize: 20,
-                      fontFamily: 'Cochin',
-                    }}>
-                    SALES INVOICE
-                  </Text>
-                </Body>
 
-                <Body>
-                  <Date />
-                </Body>
-              </CardItem>
-            </Card>
+  callLocation(that) {
+    //alert("callLocation Called");
 
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text>Customer Name :</Text>
-                </Body>
-              </CardItem>
-            </Card>
-            <Card>
-              <CardItem bordered>
-                <Body>
-                  <Text>Customer Address :</Text>
-                </Body>
-              </CardItem>
-            </Card>
+    Geolocation.getCurrentPosition(
+      //Will give you the current location
+      position => {
+        const currentLongitude = JSON.stringify(position.coords.longitude);
+        //getting the Longitude from the location json
+        const currentLatitude = JSON.stringify(position.coords.latitude);
+        //getting the Latitude from the location json
 
-            <View style={{flexDirection: 'row'}}>
-              <CardItem bordered style={{flex: 3}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Product</Text>
-
-                  <Text style={{marginBottom: 20}}>Tea Pouch</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 2}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Weight</Text>
-
-                  <Text style={{marginBottom: 20}}>20g</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.4}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Qut</Text>
-
-                  <Form>
-                    <Picker
-                      note={true}
-                      mode="dropdown"
-                      style={{
-                        width: 100,
-                        marginBottom: 20,
-                        height: 22,
-                        padding: 0,
-                      }}
-                      selectedValue={this.state.selected}
-                      onValueChange={this.onValueChange.bind(this)}>
-                      <Picker.Item label="0" value="0" />
-                      <Picker.Item label="1" value="1" />
-                      <Picker.Item label="2" value="2" />
-                      <Picker.Item label="3" value="3" />
-                      <Picker.Item label="4" value="4" />
-                      <Picker.Item label="5" value="5" />
-                      <Picker.Item label="6" value="6" />
-                      <Picker.Item label="7" value="7" />
-                      <Picker.Item label="8" value="8" />
-                      <Picker.Item label="9" value="9" />
-                      <Picker.Item label="10" value="10" />
-                    </Picker>
-                  </Form>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.7}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Rate</Text>
-                </Body>
-              </CardItem>
-
-              <CardItem bordered style={{flex: 1.7}}>
-                <Body>
-                  <Text style={styles.invoiceMain}>Value</Text>
-
-                  <Text style={{marginBottom: 20}}>
-                    {this.state.selected * 30}
-                  </Text>
-                </Body>
-              </CardItem>
-            </View>
-            <Content>
-              <Card>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Total :</Text>
-                  </Body>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Total</Text>
-                  </Body>
-                </CardItem>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Discount :</Text>
-                  </Body>
-                  <Body>
-                    <TextInput
-                      placeholder="Enter Discount"
-                      style={styles.invoiceTotal}
-                    />
-                  </Body>
-                </CardItem>
-                <CardItem bordered>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Net Total :</Text>
-                  </Body>
-                  <Body>
-                    <Text style={styles.invoiceTotal}>Net Total</Text>
-                  </Body>
-                </CardItem>
-              </Card>
-            </Content>
-            <Card>
-              <CardItem>
-                <Body>
-                  <Picker
-                    note={true}
-                    mode="dropdown"
-                    style={{
-                      width: 400,
-                      marginBottom: 20,
-                      height: 22,
-                      padding: 0,
-                      fontSize: 40,
-                      fontFamily: 'Cochin',
-                      fontWeight: 'bold',
-                    }}
-                    selectedValue={this.state.billpaid}
-                    onValueChange={this.onPaid.bind(this)}>
-                    <Picker.Item label="Paid" value="paid" />
-                    <Picker.Item label="Not Paid" value="not paid" />
-                  </Picker>
-                </Body>
-              </CardItem>
-            </Card>
-          </Card>
-        </Content>
-
-        <TouchableOpacity
-          onPress={this.nextPage}
-          style={{
-            backgroundColor: '#58eb34',
-            margin: 20,
-            marginLeft: 350,
-            width: 100,
-            height: 50,
-            borderRadius: 20,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              marginTop: 10,
-              fontSize: 20,
-              fontWeight: 'bold',
-              overflow: 'hidden',
-            }}>
-            Next
-          </Text>
-        </TouchableOpacity>
-      </Container>
+        that.setState({currentLongitude: currentLongitude});
+        //Setting state Longitude to re re-render the Longitude Text
+        that.setState({currentLatitude: currentLatitude});
+        //Setting state Latitude to re re-render the Longitude Text
+      },
+      error => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
     );
+    that.watchID = Geolocation.watchPosition(position => {
+      //Will give you the location on location change
+      console.log(position);
+      const currentLongitude = JSON.stringify(position.coords.longitude);
+      //getting the Longitude from the location json
+      const currentLatitude = JSON.stringify(position.coords.latitude);
+      //getting the Latitude from the location json
+      that.setState({currentLongitude: currentLongitude});
+      //Setting state Longitude to re re-render the Longitude Text
+      that.setState({currentLatitude: currentLatitude});
+      //Setting state Latitude to re re-render the Longitude Text
+    });
   }
-  nextPage = () => {
-    this.props.navigation.navigate('Signature');
+
+  static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
+  render() {
+    if (this.state.isLoaded === false) {
+      return (
+        <View>
+          <ActivityIndicator />
+          <Text>{this.currentLatitude}</Text>
+        </View>
+      );
+    } else {
+      return (
+        <Container style={styles.container}>
+          <Content padder>
+            <Card
+              style={{
+                borderwidth: 2,
+                borderColor: 'green',
+                backgroundColor: '#ebe6e6',
+              }}>
+              <Table>
+                <Cell
+                  data={['SALESINVOICE']}
+                  textStyle={{fontSize: 25, color: 'green'}}
+                />
+
+                <Date />
+
+                <Row
+                  data={['Customer  Name :', this.state.CustomerName]}
+                  textStyle={{fontSize: 20}}
+                />
+                <Row
+                  data={['Customer Address :', this.state.CustomerAdd]}
+                  textStyle={{fontSize: 20}}
+                />
+              </Table>
+              <Table>
+                <View
+                  style={{
+                    flex: 3,
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    borderBottomWidth: 0,
+                    backgroundColor: 'green',
+                  }}>
+                  <Text style={{color: 'white'}}>Product</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 3,
+                    flexDirection: 'row',
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'white',
+
+                    backgroundColor: 'green',
+                  }}>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'white',
+                      borderBottomWidth: 0,
+                    }}>
+                    <Text style={{color: 'white'}}>Weight</Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'white',
+                      borderBottomWidth: 0,
+                    }}>
+                    <Text style={{color: 'white'}}>Rate</Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'white',
+                      borderBottomWidth: 0,
+                    }}>
+                    <Text style={{color: 'white'}}>Qut</Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'green',
+                      borderBottomWidth: 0,
+                    }}>
+                    <Text style={{color: 'white'}}>Value</Text>
+                  </View>
+                </View>
+                {Object.keys(this.state.products).map((p, i) => {
+                  rate_arr[
+                    [
+                      this.state.products[p].name +
+                        this.state.products[p].weight,
+                    ]
+                  ] = this.state.products[p].rate;
+                  return (
+                    <View>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignSelf: 'stretch',
+                          borderWidth: 1,
+                          borderColor: 'green',
+                          borderBottomWidth: 0,
+                        }}>
+                        <View
+                          style={{
+                            flex: 3,
+                            alignSelf: 'stretch',
+                            borderWidth: 1,
+                            borderColor: 'green',
+                            borderBottomWidth: 0,
+                            backgroundColor: 'green',
+                          }}>
+                          <Text style={{color: 'white'}}>
+                            {this.state.products[p].name}
+                          </Text>
+                        </View>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignSelf: 'stretch',
+                          borderWidth: 1,
+                          borderColor: 'green',
+                          borderBottomWidth: 0,
+                        }}>
+                        <View
+                          style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            borderWidth: 1,
+                            borderColor: 'green',
+                            borderBottomWidth: 0,
+                          }}>
+                          <Text>{this.state.products[p].weight}</Text>
+                        </View>
+                        <View
+                          style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            borderWidth: 1,
+                            borderColor: 'green',
+                            borderBottomWidth: 0,
+                          }}>
+                          <Text
+                            name={
+                              this.state.products[p].name +
+                              this.state.products[p].weight
+                            }
+                            style={{textAlign: 'center', FontSize: 10}}
+                            key={i}>
+                            {this.state.products[p].rate}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            borderWidth: 1,
+                            borderColor: 'green',
+                            borderBottomWidth: 0,
+                          }}>
+                          <TextInput
+                            style={{textAlign: 'center', FontSize: 10}}
+                            keyboardType="numeric"
+                            placeholder="____"
+                            name={
+                              this.state.products[p].name +
+                              this.state.products[p].weight
+                            }
+                            value={this.state.quts}
+                            key={i}
+                            onChangeText={qut =>
+                              this.qutchange(
+                                qut,
+                                this.state.products[p].name +
+                                  this.state.products[p].weight,
+                              )
+                            }
+                          />
+                        </View>
+                        <View
+                          style={{
+                            flex: 1,
+                            alignSelf: 'stretch',
+                            borderWidth: 1,
+                            borderColor: 'green',
+                            borderBottomWidth: 0,
+                          }}>
+                          <Text
+                            name={
+                              this.state.products[p].name +
+                              this.state.products[p].weight
+                            }
+                            style={{textAlign: 'center', FontSize: 10}}
+                            key={i}>
+                            {
+                              this.state.prices[
+                                [
+                                  this.state.products[p].name +
+                                    this.state.products[p].weight,
+                                ]
+                              ]
+                            }
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  );
+                })}
+              </Table>
+
+              <Table>
+                <View
+                  style={{
+                    flex: 3,
+                    flexDirection: 'row',
+                    alignSelf: 'stretch',
+                    borderWidth: 1,
+                    borderColor: 'green',
+
+                    height: 50,
+                  }}>
+                  <View
+                    style={{
+                      flex: 3,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'green',
+
+                      backgroundColor: '#BDFDB3',
+                    }}>
+                    <Text>TOTAL</Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 2.15,
+                      alignSelf: 'stretch',
+                      borderWidth: 1,
+                      borderColor: 'green',
+
+                      backgroundColor: '#BDFDB3',
+                    }}>
+                    <Text>Rs {this.state.totalValue}</Text>
+                  </View>
+                </View>
+              </Table>
+              <Card
+                style={{
+                  alignSelf: 'stretch',
+                  backgroundColor: '#BDFDB3',
+                  borderWidth: 1,
+                  borderColor: 'green',
+                }}>
+                <Picker
+                  selectedValue={this.state.pay_type}
+                  style={{witdth: 0, alignSelf: 'stretch'}}
+                  onValueChange={(itemValue, itemIndex) =>
+                    this.setState({pay_type: itemValue})
+                  }>
+                  <Picker.Item label="Pay type" value=" / " />
+                  <Picker.Item label="Cash" value="Cash" />
+                  <Picker.Item label="Cheque" value="Cheque" />
+                  <Picker.Item label="Credit" value="Credit" />
+                </Picker>
+              </Card>
+            </Card>
+          </Content>
+
+          <TouchableOpacity
+            onPress={this.nextPage}
+            style={{
+              backgroundColor: '#00363a',
+              margin: 20,
+              marginLeft: 200,
+              width: 100,
+              height: 50,
+              borderRadius: 20,
+              borderWidth: 2,
+              borderColor: '#006064',
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                marginTop: 10,
+                fontSize: 20,
+                fontWeight: 'bold',
+                overflow: 'hidden',
+              }}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        </Container>
+      );
+    }
+  }
+
+  nextPage = e => {
+    var ID = function() {
+      return (
+        '_' +
+        Math.random()
+          .toString(36)
+          .substr(2, 9)
+      );
+    };
+    e.preventDefault();
+
+    const order = {
+      salesrepName: 'kasun perera',
+      CustomerAddress: this.state.CustomerAdd,
+      pay_type: this.state.pay_type,
+      Latitude: this.state.currentLatitude,
+      Longitude: this.state.currentLongitude,
+      customerName: this.state.CustomerName,
+
+      teapouch20: {
+        qut: this.state.quts['tea pouch20g'],
+        price: this.state.prices['tea pouch20g'],
+      },
+      teapouch50: {
+        qut: this.state.quts['tea pouch50g'],
+        price: this.state.prices['tea pouch50g'],
+      },
+      teapouch100: {
+        qut: this.state.quts['Tea pouch100g'],
+        price: this.state.prices['Tea pouch100g'],
+      },
+      teapouch200: {
+        qut: this.state.quts['Tea pouch200g'],
+        price: this.state.prices['Tea pouch200g'],
+      },
+      teapouch400: {
+        qut: this.state.quts['Tea pouch400g'],
+        price: this.state.prices['Tea pouch400g'],
+      },
+      teapouch1kg1: {
+        qut: this.state.quts['Tea pouch Premium Quality1kg'],
+        price: this.state.prices['Tea pouch Premium Quality1kg'],
+      },
+      teapouch1kg2: {
+        qut: this.state.quts['Tea pouch Export Quality1kg'],
+        price: this.state.prices['Tea pouch Export Quality1kg'],
+      },
+      teapouch1kg3: {
+        qut: this.state.quts['Tea pouch BOPF Quality1kg'],
+        price: this.state.prices['Tea pouch BOPF Quality1kg'],
+      },
+      teapouch1kg4: {
+        qut: this.state.quts['Tea pouch Catering Pack1kg'],
+        price: this.state.prices['Tea pouch Catering Pack1kg'],
+      },
+      teabag1: {
+        qut: this.state.quts['Teabag Packet Type25pack'],
+        price: this.state.prices['Teabag Packet Type25pack'],
+      },
+      teabag2: {
+        qut: this.state.quts['Teabag Packet Type50pack'],
+        price: this.state.prices['Teabag Packet Type50pack'],
+      },
+      teabag3: {
+        qut: this.state.quts['Teabag Packet Type100pack'],
+        price: this.state.prices['Teabag Packet Type100pack'],
+      },
+      teasachet1: {
+        qut: this.state.quts['Tea sachet Catering Type250Bag'],
+        price: this.state.prices['Tea sachet Catering Type250Bag'],
+      },
+      teasachet2: {
+        qut: this.state.quts['Tea sachet Catering Type500Bag'],
+        price: this.state.prices['Tea sachet Catering Type500Bag'],
+      },
+      teasachet3: {
+        qut: this.state.quts['Tea sachet Catering Type1000Bag'],
+        price: this.state.prices['Tea sachet Catering Type1000Bag'],
+      },
+      teabulk1: {
+        qut: this.state.quts['Tea bulk Premium Quality5kg'],
+        price: this.state.prices['Tea bulk Premium Quality5kg'],
+      },
+      teabulk2: {
+        qut: this.state.quts['Tea bulk Export Quality5kg'],
+        price: this.state.prices['Tea bulk Export Quality5kg'],
+      },
+      teabulk3: {
+        qut: this.state.quts['Tea bulk Catering Quality5kg'],
+        price: this.state.prices['Tea bulk Catering Quality5kg'],
+      },
+      teabulk4: {
+        qut: this.state.quts['Tea bulk Export Quality25kg'],
+        price: this.state.prices['Tea bulk Export Quality25kg'],
+      },
+      teabulk5: {
+        qut: this.state.quts['Tea bulk Tea Box25kg'],
+        price: this.state.prices['Tea bulk Tea Box25kg'],
+      },
+      teabulk6: {
+        qut: this.state.quts['Tea bulk Bag Type50kg'],
+        price: this.state.prices['Tea bulk Bag Type50kg'],
+      },
+      teabottle: {
+        qut: this.state.quts['Tea bottle250g'],
+        price: this.state.prices['Tea bottle250g'],
+      },
+      teabasket1: {
+        qut: this.state.quts['Tea Basket PF-l4.5kg'],
+        price: this.state.prices['Tea Basket PF-l4.5kg'],
+      },
+      teabasket2: {
+        qut: this.state.quts['Tea Basket BP-l4kg'],
+        price: this.state.prices['Tea Basket BP-l4kg'],
+      },
+      totalValue: this.state.totalValue,
+    };
+    if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
+      Axios.post('http://192.168.1.104:4000/order/submit', order)
+        .then(response => {
+          console.log('', response);
+          console.log(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      var id = {};
+
+      this.props.navigation.navigate('Signature', {
+        id: this.quts_arr,
+      });
+    }
+  };
+  qutchange = (e, i) => {
+    quts_arr[[i]] = e;
+    price_arr[[i]] = quts_arr[[i]] * rate_arr[[i]];
+
+    this.setState({i: e});
+    this.setState({rates: rate_arr});
+    this.setState({quts: quts_arr});
+    this.setState({prices: price_arr});
+
+    //console.warn(this.state.totalValue);
+    //console.warn(price_arr[[i]]);
+    // this.setState({[quts[i]]: e});
+    //  console.warn(totalvalue);
+    total = total + price_arr[[i]];
+    this.setState({totalValue: total});
+  };
+  totalValue = () => {
+    console.warn('fjsfsdkjfsjl');
   };
 }
 
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   invoiceMain: {
     marginBottom: 20,
@@ -252,6 +624,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Cochin',
   },
+  head: {height: 40},
+  text: {margin: 6, color: 'green'},
 });
 
 //make this component available to the app

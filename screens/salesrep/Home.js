@@ -10,6 +10,7 @@ import {
 import Tab1 from './Profile';
 import Tab2 from './AddOrder';
 import Tab3 from './StockBalance';
+
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   Container,
@@ -30,14 +31,12 @@ import {
   TabHeading,
 } from 'native-base';
 export default class HomeScreen extends Component {
-  static navigationOptions = {
-    header: null,
-  };
   render() {
     return (
-      <Container style={{backgroundColor: '#2bbbad'}}>
-        <StatusBar backgroundColor="#2bbbad" barStyle="light-content" />
-        <Header style={{backgroundColor: '#124d04'}}>
+      <Container style={{backgroundColor: '#37474f'}}>
+        <Image source={require('../Image/tea.jpg')} style={{opacity: 0.5}} />
+        <StatusBar backgroundColor="#00363a" barStyle="light-content" />
+        <Header style={{backgroundColor: '#006064'}}>
           <Body>
             <Right>
               <Image
@@ -47,44 +46,14 @@ export default class HomeScreen extends Component {
             </Right>
           </Body>
         </Header>
-        <Tabs>
-          <Tab
-            heading={
-              <TabHeading style={{backgroundColor: '#124d04'}}>
-                <Text>PROFILE</Text>
-              </TabHeading>
-            }>
-            <Tab1 />
-          </Tab>
-          <Tab
-            heading={
-              <TabHeading style={{backgroundColor: '#124d04'}}>
-                <Text>ADD ORDER</Text>
-              </TabHeading>
-            }>
-            <Tab2 />
-          </Tab>
-          <Tab
-            heading={
-              <TabHeading style={{backgroundColor: '#124d04'}}>
-                <Text>STOCK BALANCE</Text>
-              </TabHeading>
-            }>
-            <Tab3 />
-          </Tab>
-        </Tabs>
       </Container>
     );
   }
-  logOut = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
 }
 const styles = (StyleSheet.home = {
   container: {
     flex: 1,
-    backgroundColor: '#2bbbad',
+    backgroundColor: '#00363a',
   },
   flexd: {
     flexDirection: 'row',
@@ -127,5 +96,16 @@ const styles = (StyleSheet.home = {
   },
   logoutText: {
     fontSize: 30,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
   },
 });

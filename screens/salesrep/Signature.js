@@ -7,10 +7,19 @@ import {Container, Content, Card} from 'native-base';
 class Signature extends Component {
   constructor(props) {
     super(props);
-    this.state = {signature: null};
+    this.state = {
+      signature: null,
+      photo: '',
+      order: {},
+    };
+  }
+  async componentDidMount() {
+    this.setState({
+      order: JSON.stringify(this.props.navigation.getParam('id')),
+    });
   }
 
-  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -22,8 +31,9 @@ class Signature extends Component {
             fontWeight: 'bold',
             fontFamily: 'Cochin',
           }}>
-          Sign here
+          {this.state.order}
         </Text>
+
         <SignatureCapture
           style={[{flex: 1}, styles.signature]}
           ref="sign"
@@ -36,7 +46,7 @@ class Signature extends Component {
         />
 
         <View
-          style={{flex: 1, flexDirection: 'row', backgroundColor: '#2bbbad'}}>
+          style={{flex: 1, flexDirection: 'row', backgroundColor: '#00363a'}}>
           <TouchableHighlight
             style={styles.buttonStyle}
             onPress={() => {
@@ -52,14 +62,26 @@ class Signature extends Component {
             onPress={() => {
               this.saveSign();
             }}>
-            <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>Save</Text>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontFamily: 'Cochin',
+                color: 'white',
+              }}>
+              Save
+            </Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.buttonStyle1}
             onPress={this.nextPage}>
-            <Text style={{fontWeight: 'bold', fontFamily: 'Cochin'}}>
-              Submit Order
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontFamily: 'Cochin',
+                color: 'white',
+              }}>
+              Next
             </Text>
           </TouchableHighlight>
         </View>
@@ -78,6 +100,7 @@ class Signature extends Component {
     //result.encoded - for the base64 encoded png
     //result.pathName - for the file path name
     console.log(result);
+    this.setState({photo: result});
   }
   _onDragEvent() {
     // This callback will be called when the user enters signature
@@ -105,17 +128,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#00363a',
     margin: 10,
     width: 50,
+    borderWidth: 3,
+    borderColor: '#006064',
   },
   buttonStyle1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#58eb34',
+    backgroundColor: '#00363a',
     margin: 10,
+    borderWidth: 3,
+    borderColor: '#006064',
   },
 });
 

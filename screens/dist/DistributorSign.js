@@ -10,7 +10,7 @@ class Signature extends Component {
     this.state = {signature: null};
   }
 
-  static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
+  static navigationOptions = {headerStyle: {backgroundColor: '#2bbbad'}};
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -22,7 +22,7 @@ class Signature extends Component {
             fontWeight: 'bold',
             fontFamily: 'Cochin',
           }}>
-          Sales rep Sign here
+          Distributor Sign here
         </Text>
         <SignatureCapture
           style={[{flex: 1}, styles.signature]}
@@ -36,7 +36,7 @@ class Signature extends Component {
         />
 
         <View
-          style={{flex: 1, flexDirection: 'row', backgroundColor: '#00363a'}}>
+          style={{flex: 1, flexDirection: 'row', backgroundColor: '#2bbbad'}}>
           <TouchableHighlight
             style={styles.buttonStyle}
             onPress={() => {
@@ -103,21 +103,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#00363a',
+    backgroundColor: '#eeeeee',
     margin: 10,
     width: 50,
-    borderWidth: 3,
-    borderColor: '#006064',
   },
   buttonStyle1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    backgroundColor: '#00363a',
+    backgroundColor: '#58eb34',
     margin: 10,
-    borderWidth: 3,
-    borderColor: '#006064',
   },
 });
 
