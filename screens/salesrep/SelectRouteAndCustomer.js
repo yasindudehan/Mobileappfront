@@ -47,7 +47,7 @@ export default class SelectRoute extends React.Component {
   }
 
   async componentDidMount() {
-    await Axios.get(`http://${IP}:4000/customer/select`)
+    await Axios.get(`http://${IP}:4000/select`)
       .then(res => {
         this.setState({
           routes: res.data,
@@ -65,7 +65,7 @@ export default class SelectRoute extends React.Component {
   }
   updateRoute = sRoute => {
     this.setState({sRoute: sRoute});
-    Axios.post(`http://${IP}:4000/customer/select`, {
+    Axios.post(`http://${IP}:4000/select`, {
       route: sRoute,
     })
       .then(res => {
