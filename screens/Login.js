@@ -94,9 +94,11 @@ export default class LoginScreen extends Component {
       res => {
         if (res.status === 200 && res.data.repordist==="0") {
           AsyncStorage.setItem('logged', '1');
+          AsyncStorage.setItem('username', this.state.userId);
           this.props.navigation.navigate('App');
         } else if(res.status === 200 && res.data.repordist==="1"){
           AsyncStorage.setItem('logged', '2');
+          AsyncStorage.setItem('username', this.state.userId);
           this.props.navigation.navigate('App1');
         }
         else {

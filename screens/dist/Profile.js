@@ -13,6 +13,9 @@ import {Container, Content, Card, CardItem, Form} from 'native-base';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import UpdateProfile from './UpdateProfile';
 class ProfileScreenS extends React.Component {
+  state={
+    username:null,
+  }
   static navigationOptions = {
     header: null,
   };
@@ -31,7 +34,7 @@ class ProfileScreenS extends React.Component {
             />
             <View style={styles.body}>
               <View style={styles.bodyContent}>
-                <Text style={styles.name}>Shalitha Jayamal</Text>
+                <Text style={styles.name}>{this.state.username}</Text>
                 <Text style={styles.info}>Distributor</Text>
                 <Text style={styles.description}>Works at Lavish pvt Lt </Text>
                 <Form>
@@ -52,6 +55,10 @@ class ProfileScreenS extends React.Component {
         </Content>
       </Container>
     );
+  }
+  componentDidMount =async ()=>{
+    const username=await AsyncStorage.getItem('username');
+    this.setState({username:username});
   }
   nextPage = () => {
     // alert('Pressed');

@@ -14,9 +14,12 @@ import {createAppContainer, createStackNavigator} from 'react-navigation';
 import UpdateProfile from './UpdateProfile';
 
 class ProfileScreenS extends React.Component {
+  state={
+    username:null,
+  }
   static navigationOptions = {
     header: null,
-  };
+  };  
   render() {
     return (
       <Container>
@@ -34,7 +37,7 @@ class ProfileScreenS extends React.Component {
 
             <View style={styles.body}>
               <View style={styles.bodyContent}>
-                <Text style={styles.name}>Sales Rep Name</Text>
+                <Text style={styles.name}>{this.state.username}</Text>
                 <Text style={styles.info}>Sales Rep</Text>
                 <Text style={styles.description}>Works at Lavish pvt Lt </Text>
 
@@ -57,6 +60,10 @@ class ProfileScreenS extends React.Component {
         </Content>
       </Container>
     );
+  }
+  componentDidMount =async ()=>{
+    const username=await AsyncStorage.getItem('username');
+    this.setState({username:username});
   }
   nextPage = () => {
     // alert('Pressed');

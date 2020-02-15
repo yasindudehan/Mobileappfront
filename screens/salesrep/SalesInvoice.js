@@ -10,6 +10,7 @@ import {
   PermissionsAndroid,
   Platform,
   ActivityIndicator,
+  AsyncStorage,
 } from 'react-native';
 import {
   Container,
@@ -47,6 +48,7 @@ class SalesInvoice extends React.Component {
     super(props);
 
     this.state = {
+      username:null,
       qut: 0,
       quts: [],
       price: 0,
@@ -63,7 +65,9 @@ class SalesInvoice extends React.Component {
       isLoaded: false,
     };
   }
-  componentDidMount = () => {
+  componentDidMount  =async ()=> {
+    const username=await AsyncStorage.getItem('username');
+    this.setState({username:username});
     Axios.get(`http://${IP}:4000/product`)
       .then(json => {
         this.setState({
@@ -468,7 +472,7 @@ class SalesInvoice extends React.Component {
     e.preventDefault();
 
     const order = {
-      salesrepName: 'kasun perera',
+      salesrepName: this.state.username,
       CustomerAddress: this.state.CustomerAdd,
       pay_type: this.state.pay_type,
       Latitude: this.state.currentLatitude,
