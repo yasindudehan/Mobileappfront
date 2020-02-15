@@ -29,7 +29,7 @@ export default class LoginScreen extends Component {
     super(props);
     this.state = {userId: '', password: ''};
   }
-  async componentDidMount() {
+ /*  async componentDidMount() {
     try{
     await Axios(`http://${IP}:4000/login/signIn`, {
       username: this.state.userId,
@@ -38,7 +38,7 @@ export default class LoginScreen extends Component {
   }catch(err){
     console.log(err);
   }
-  }
+  } */
   render() {
     // const { navigate } = this.props.navigation;
 
@@ -68,7 +68,7 @@ export default class LoginScreen extends Component {
       </View>
     );
   }
-  onSign = async () => {
+  /* onSign = async () => {
     if (
       Info.userId === this.state.userId &&
       Info.password === this.state.password
@@ -84,22 +84,28 @@ export default class LoginScreen extends Component {
     } else {
       alert('Wrong password');
     }
-  };
-  /* onSign = e => {
+  }; */
+   onSign = e => {
     const userdata = {
       username: this.state.userId,
       password: this.state.password,
     };
-    Axios.post('http://192.168.137.11:4000/login/signIn', userdata).then(
+    Axios.post(`http://${IP}:4000/login/signIn`, userdata).then(
       res => {
-        if (res.status === 200) {
+        if (res.status === 200 && res.data.repordist==="0") {
           this.props.navigation.navigate('App');
-        } else {
-          alert('ghjgjh');
+        } else if(res.status === 200 && res.data.repordist==="1"){
+          this.props.navigation.navigate('App1');
         }
-      },
-    );
-  };*/
+        else {
+          alert(res.data);
+        }
+      }
+    ).catch(err=>{
+      if(err.response.data.incorrect)
+        alert(err.response.data.incorrect);
+    })
+  };
 }
 
 const styles = (StyleSheet.cretate = {
