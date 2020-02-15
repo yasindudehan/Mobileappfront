@@ -18,6 +18,7 @@ import {
   Radio,
   Body,
 } from 'native-base';
+
 import Axios from 'react-native-axios';
 import {
   View,
@@ -29,7 +30,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {FlatList, TextInput} from 'react-native-gesture-handler';
-import { IP} from 'react-native-dotenv';
+
 export default class SelectRoute extends React.Component {
   static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
@@ -47,7 +48,7 @@ export default class SelectRoute extends React.Component {
   }
 
   async componentDidMount() {
-    await Axios.get(`http://${IP}:4000/select`)
+    await Axios.get(`http://192.168.1.104:4000/select`)
       .then(res => {
         this.setState({
           routes: res.data,
@@ -65,7 +66,7 @@ export default class SelectRoute extends React.Component {
   }
   updateRoute = sRoute => {
     this.setState({sRoute: sRoute});
-    Axios.post(`http://${IP}:4000/select`, {
+    Axios.post(`http://192.168.1.104:4000/select`, {
       route: sRoute,
     })
       .then(res => {
@@ -136,7 +137,13 @@ export default class SelectRoute extends React.Component {
                     <View>
                       {this.state.shopselect == shop.shop ? (
                         <TouchableOpacity key={shop._id}>
-                          <View style={{flex: 1, flexDirection: 'row'}}>
+                          <View
+                            style={{
+                              flex: 1,
+                              flexDirection: 'row',
+                              borderWidth: 1,
+                              borderColor: 'white',
+                            }}>
                             <Text key={index} style={{margin: 5, flex: 1}}>
                               {shop.shop}
                             </Text>
@@ -147,9 +154,6 @@ export default class SelectRoute extends React.Component {
                               key={index}
                             />
                           </View>
-                          <Text style={{color: 'white'}}>
-                            ___________________________________________________________________
-                          </Text>
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity
@@ -160,7 +164,13 @@ export default class SelectRoute extends React.Component {
                               custadd: shop.area,
                             });
                           }}>
-                          <View style={{flex: 1, flexDirection: 'row'}}>
+                          <View
+                            style={{
+                              flex: 1,
+                              flexDirection: 'row',
+                              borderWidth: 1,
+                              borderColor: 'white',
+                            }}>
                             <Text key={shop._id} style={{margin: 5, flex: 1}}>
                               {shop.shop}
                             </Text>
@@ -171,9 +181,6 @@ export default class SelectRoute extends React.Component {
                               key={index}
                             />
                           </View>
-                          <Text style={{color: 'white'}}>
-                            ___________________________________________________________________
-                          </Text>
                         </TouchableOpacity>
                       )}
                     </View>
