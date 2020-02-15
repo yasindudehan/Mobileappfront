@@ -124,7 +124,7 @@ class SalesInvoice extends React.Component {
                   textStyle={{fontSize: 20}}
                 />
                 <Row
-                  data={['Customer Address :', this.state.repName]}
+                  data={['Sales rep Name :', this.state.repName]}
                   textStyle={{fontSize: 20}}
                 />
               </Table>
