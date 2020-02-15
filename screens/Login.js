@@ -12,14 +12,14 @@ import {
 import {Container, Header, Content, Text, Button, Toast} from 'native-base';
 import { IP} from 'react-native-dotenv';
 
-const Info = {
+/* const Info = {
   userId: 'kasun',
   password: '12345',
 };
 const Info1 = {
   userId1: 'shalitha',
   password1: '12345',
-};
+}; */
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -93,8 +93,10 @@ export default class LoginScreen extends Component {
     Axios.post(`http://${IP}:4000/login/signIn`, userdata).then(
       res => {
         if (res.status === 200 && res.data.repordist==="0") {
+          AsyncStorage.setItem('logged', '1');
           this.props.navigation.navigate('App');
         } else if(res.status === 200 && res.data.repordist==="1"){
+          AsyncStorage.setItem('logged', '2');
           this.props.navigation.navigate('App1');
         }
         else {
