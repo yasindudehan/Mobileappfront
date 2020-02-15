@@ -12,6 +12,7 @@ import {
   Dimensions,
   ScrollView,
   SafeAreaView,
+  AsyncStorage,
 } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import Axios from 'axios';
@@ -44,7 +45,6 @@ import {TextInput} from 'react-native-gesture-handler';
 import Date from './Date';
 import {TabNavigator} from 'react-navigation';
 import Geolocation from '@react-native-community/geolocation';
-import { IP} from 'react-native-dotenv';
 
 var quts_arr = [];
 var rate_arr = [];
@@ -54,99 +54,39 @@ export default class StockBalanceScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: {},
+      stockBalance: [],
       isLoaded: true,
-      latitude: 'latitude',
-      longitude: 'longitude',
-      error: null,
-      currentLongitude: 'un',
-      currentLatitude: 'un',
       qut: 0,
       quts: [],
       price: 0,
       prices: [],
       totalValue: 0,
+      repName: '',
+      repInfo: [],
+      distName: '',
     };
   }
 
-  /* async componentWillMount() {
-    /*  navigator.geolocation.getCurrentPosition(
-      position => {
-        console.log('wokeeey');
-        console.log(position);
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      error => this.setState({error: error.message}),
-      {enableHighAccuracy: false, timeout: 200000, maximumAge: 1000},
-    );
-    var that = this;
-    //Checking for the permission just after component loaded
-    if (Platform.OS === 'ios') {
-      this.callLocation(that);
-    } else {
-      async function requestLocationPermission() {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            {
-              title: 'Location Access Required',
-              message: 'This App needs to Access your location',
-            },
-          );
+  componentDidMount = async () => {
+    const repName = await AsyncStorage.getItem('username');
+    this.setState({repName: repName});
+    await Axios.post('http://192.168.1.104:4000/login/salesrep', {
+      userName: repName,
+    }).then(json => {
+      this.setState({repInfo: json.data[0]});
 
-          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            //To Check, If Permission is granted
-
-            that.callLocation(that);
-          } else {
-            alert('Permission Denied');
-          }
-        } catch (err) {
-          alert('err', err);
-          console.warn(err);
-        }
-      }
-      requestLocationPermission();
-    }
-  }
-  callLocation(that) {
-    //alert("callLocation Called");
-
-    Geolocation.getCurrentPosition(
-      //Will give you the current location
-      position => {
-        console.warn('ghjghjgudygsyuyud');
-        const currentLongitude = JSON.stringify(position.coords.longitude);
-        //getting the Longitude from the location json
-        const currentLatitude = JSON.stringify(position.coords.latitude);
-        //getting the Latitude from the location json
-
-        that.setState({currentLongitude: currentLongitude});
-        //Setting state Longitude to re re-render the Longitude Text
-        that.setState({currentLatitude: currentLatitude});
-        //Setting state Latitude to re re-render the Longitude Text
-      },
-      error => alert(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
-    that.watchID = Geolocation.watchPosition(position => {
-      //Will give you the location on location change
-      console.log(position);
-      const currentLongitude = JSON.stringify(position.coords.longitude);
-      //getting the Longitude from the location json
-      const currentLatitude = JSON.stringify(position.coords.latitude);
-      //getting the Latitude from the location json
-      that.setState({currentLongitude: currentLongitude});
-      //Setting state Longitude to re re-render the Longitude Text
-      that.setState({currentLatitude: currentLatitude});
-      //Setting state Latitude to re re-render the Longitude Text
+      //  console.warn(this.state.repInfo.distributor);
     });
-    /* await Axios.get('http://192.168.8.102:4000/product')
-
+    const distname = this.state.repInfo.distributor;
+    this.setState({distName: distname});
+    await Axios.post('http://192.168.1.104:4000/stock/getstock', {
+      repname: repName,
+      distname: distname,
+    }).then(json => {
+      this.setState({stockBalance: json.data[0]});
+      //console.warn(this.state.stockBalance['teapouch20']);
+    });
+    /*Axios.get('http://192.168.1.104:4000/product')
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -155,215 +95,88 @@ export default class StockBalanceScreen extends Component {
       })
       .catch(error => {
         console.error(error);
-      });
-  }*/
-  componentDidMount = () => {
-    Axios.get(`http://${IP}:4000/product`)
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          products: json.data[0],
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      });*/
   };
   render() {
-    const {products, qut, price, quts, prices, totalValue} = this.state;
+    const {
+      products,
+      qut,
+      price,
+      quts,
+      prices,
+      totalValue,
+      repName,
+      distName,
+      repInfo,
+      stockBalance,
+    } = this.state;
     const a = 100;
     const b = 1000;
+
     if (this.state.isLoaded === false) {
       return (
         <View>
-          <Text>{this.state.currentLatitude}</Text>
+          <ActivityIndicator />
         </View>
       );
     } else {
       return (
-        <View style={{backgroundColor: '#00363a'}}>
-          <View
-            style={{
-              flex: 3,
-              alignSelf: 'stretch',
-              borderWidth: 1,
-              borderColor: 'green',
-              borderBottomWidth: 0,
-              marginBottom: 50,
-              backgroundColor: 'green',
-            }}>
-            <Text style={{color: 'white'}}>Product Name</Text>
-          </View>
-          <View
-            style={{
-              flex: 3,
-              flexDirection: 'row',
-              alignSelf: 'stretch',
-              borderWidth: 1,
-              borderColor: 'green',
-              borderBottomWidth: 0,
-              marginBottom: 50,
-            }}>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: 'stretch',
-                borderWidth: 1,
-                borderColor: 'green',
+        <View style={styles.container}>
+          <Container style={styles.container}>
+            <Content padder>
+              {Object.keys(stockBalance).map((item, i) => {
+                quts_arr[item] = parseInt(stockBalance[item].qut);
 
-                borderRightWidth: 2,
-                borderBottomWidth: 0,
-                backgroundColor: 'white',
-                margin: 1,
-              }}>
-              <Text style={{color: 'white'}}>Weight</Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: 'stretch',
-                borderWidth: 1,
-                borderColor: 'green',
-                borderBottomWidth: 0,
-                backgroundColor: 'white',
-                margin: 1,
-              }}>
-              <Text style={{color: 'white'}}>Rate</Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: 'stretch',
-                borderWidth: 1,
-                borderColor: 'green',
-                borderBottomWidth: 0,
-                backgroundColor: 'white',
-                margin: 1,
-              }}>
-              <Text style={{color: 'white'}}>Qut</Text>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                alignSelf: 'stretch',
-                borderWidth: 1,
-                borderColor: 'green',
-                borderBottomWidth: 0,
-                backgroundColor: 'white',
-                margin: 1,
-              }}>
-              <Text style={{color: 'white'}}>Value</Text>
-            </View>
-          </View>
+                return (
+                  <Card>
+                    <Body>
+                      <Text style={styles.TextStyle1}>
+                        {stockBalance[item].name}
+                      </Text>
+                    </Body>
+                    <Body>
+                      <Text key={i} style={styles.TextStyle1}>
+                        {stockBalance[item].weight}
+                      </Text>
+                    </Body>
 
-          <ScrollView>
-            {Object.keys(products).map((p, i) => {
-              rate_arr[[products[p].name + products[p].weight]] =
-                products[p].rate;
-              return (
-                <View>
-                  <View style={{backgroundColor: 'green'}}>
-                    <Text style={{color: 'white'}} key={{i}}>
-                      {products[p].name}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignSelf: 'stretch',
-                      borderWidth: 1,
-                      borderColor: 'green',
-                      borderBottomWidth: 0,
-                    }}>
-                    <View
-                      style={{
-                        flex: 1,
-                        backgroundColor: 'white',
-                        margin: 1,
-                      }}>
-                      <Text style={{textAlign: 'center', fontSize: 10}} key={i}>
-                        {products[p].weight}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        backgroundColor: 'white',
-                        margin: 1,
-                      }}>
-                      <Text
-                        name={products[p].name + products[p].weight}
-                        style={{textAlign: 'center', fontSize: 10}}
-                        key={i}>
-                        {products[p].rate}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        backgroundColor: 'white',
-                        margin: 1,
-                      }}>
-                      <TextInput
-                        style={{textAlign: 'center', fontSize: 10}}
-                        keyboardType="numeric"
-                        placeholder="____"
-                        name={products[p].name + products[p].weight}
-                        value={qut.toString()}
-                        key={i}
-                        onChangeText={qut =>
-                          this.qutchange(
-                            qut,
-                            products[p].name + products[p].weight,
-                          )
-                        }
-                      />
-                    </View>
-                    <View
-                      style={{
-                        flex: 1,
-                        backgroundColor: 'white',
-                        margin: 1,
-                      }}>
-                      <Text
-                        name={products[p].name + products[p].weight}
-                        style={{textAlign: 'center', fontSize: 10}}
-                        key={i}>
-                        {price_arr[[products[p].name + products[p].weight]]}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              );
-            })}
-            <Button title="abc" />
-          </ScrollView>
+                    <CardItem style={{backgroundColor: '#00363a', height: 250}}>
+                      <ProgressCircle
+                        style={{flex: 1}}
+                        percent={((b - a) / b) * 100}
+                        radius={100}
+                        borderWidth={5}
+                        color="#a19b03"
+                        shadowColor="#131414"
+                        bgColor="#00363a">
+                        <Text style={styles.TextStyle}>
+                          {((b - a) / b) * 100}%
+                        </Text>
+                      </ProgressCircle>
+                    </CardItem>
+                  </Card>
+                );
+              })}
+            </Content>
+          </Container>
         </View>
       );
     }
   }
-
-  qutchange = (e, i) => {
-    // console.warn([i]);
-
-    quts_arr[[i]] = e;
-    price_arr[[i]] = quts_arr[[i]] * rate_arr[[i]];
-    for (var item in price_arr) {
-      total = total + price_arr[item];
-      // console.warn('KKKK');
-    }
-
-    this.setState({totalValue: total});
-    console.warn(this.state.totalValue);
-    //console.warn(price_arr[[i]]);
-    // this.setState({[quts[i]]: e});
-    //  console.warn(totalvalue);
-    this.setState({i: e});
-  };
 }
+
 const styles = (StyleSheet.stockBalance = {
   container: {
     flex: 1,
-    backgroundColor: '#00363a',
+  },
+  TextStyle: {
+    fontSize: 25,
+    fontFamily: 'roboto',
+    color: 'white',
+  },
+  TextStyle1: {
+    fontSize: 25,
+    fontFamily: 'roboto',
+    color: '#00363a',
   },
 });
