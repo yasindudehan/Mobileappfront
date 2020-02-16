@@ -24,7 +24,7 @@ class SubmitOrder extends Component {
                  issendemail:false,
                  path:null,
                  order:{},
-                 products:[]
+                 products:[],
           };
 
     };
@@ -396,12 +396,23 @@ class SubmitOrder extends Component {
                      <td>${this.state.products["teabasket2"].rate}</td>
                      <td>${this.state.order["teabasket2"].price?this.state.order["teabasket2"].price:""}</td>
                   </tr>
+                  <tr>
+                    <td colspan='4'>
+                      <strong>Total price</strong>
+                    </td>
+                    <td>
+                      <strong>Rs ${this.state.order.totalValue} </strong>
+                    </td>
+                  </tr>
                </table>
                <br />
-               <h1 class="justify-center">Total price: Rs ${this.state.order.totalValue} </h1>
+               <img src="http://${IP}:4000/image/getimage?repName=${this.props.navigation.state.params.order.salesrepName}" style="width:100%; max-width:156px;" />
+               <p class="justify-left">Sales Representative Signature</p>
+
             </div>
          </body>
-      </html>`,      
+      </html>     
+      `,    
       fileName: 'order',
 
       directory: 'Downloads',

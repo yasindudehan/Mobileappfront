@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import SignatureCapture from 'react-native-signature-capture';
 import {Container, Content, Card} from 'native-base';
+import Axios from 'axios';
+import { IP} from 'react-native-dotenv';
 // create a component
 class Signature extends Component {
   constructor(props) {
@@ -56,7 +58,7 @@ class Signature extends Component {
               style={{width: 50, height: 50}}
             />
           </TouchableHighlight>
-          <TouchableHighlight
+          {/* <TouchableHighlight
             style={styles.buttonStyle1}
             onPress={() => {
               this.saveSign();
@@ -69,7 +71,7 @@ class Signature extends Component {
               }}>
               Save
             </Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
 
           <TouchableHighlight
             style={styles.buttonStyle1}
@@ -95,17 +97,29 @@ class Signature extends Component {
     this.refs['sign'].resetImage();
   }
 
-  _onSaveEvent(result) {
-    //result.encoded - for the base64 encoded png
-    //result.pathName - for the file path name
-    console.log(result);
-    this.setState({photo: result});
-  }
-  _onDragEvent() {
+  _onSaveEvent = result => {/* 
+    const dirs = RNFetchBlob.fs.dirs;
+    var path = dirs.DCIMDir + "/sign.png";  */   
+    //RNFetchBlob.fs.writeFile(path, result.encoded, 'base64');
+    const userdata = {
+      image: result.encoded,
+      imageName: "sign",
+      imageExt:"png",
+      repName:this.props.navigation.state.params.order.salesrepName
+    };
+    Axios.post(`http://${IP}:4000/image/submit`,userdata)
+    .catch(error => {
+      console.error(error);
+    });
+   
+  };
+ 
+  _onDragEvent = () => {
     // This callback will be called when the user enters signature
     console.log('dragged');
-  }
+  };
   nextPage = () => {
+    this.saveSign();
     this.props.navigation.navigate('SubmitOrder',{
       order:this.props.navigation.state.params.order,
       custEmail:this.props.navigation.state.params.custEmail,
