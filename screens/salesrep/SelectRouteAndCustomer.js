@@ -18,7 +18,6 @@ import {
   Radio,
   Body,
 } from 'native-base';
-
 import Axios from 'react-native-axios';
 import {
   View,
@@ -30,7 +29,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {FlatList, TextInput} from 'react-native-gesture-handler';
-
+import { IP} from 'react-native-dotenv';
 export default class SelectRoute extends React.Component {
   static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
@@ -44,11 +43,12 @@ export default class SelectRoute extends React.Component {
       shopselect: '/',
       isLoding: false,
       custadd: '/',
+      shopemail:""
     };
   }
 
   async componentDidMount() {
-    await Axios.get(`http://192.168.1.104:4000/select`)
+    Axios.get(`http://${await IP}:4000/select`)
       .then(res => {
         this.setState({
           routes: res.data,
@@ -59,14 +59,14 @@ export default class SelectRoute extends React.Component {
       });
   }
 
-  onValueChange(value: string) {
+  onValueChange(value) {
     this.setState({
       selected: value,
     });
   }
   updateRoute = sRoute => {
     this.setState({sRoute: sRoute});
-    Axios.post(`http://192.168.1.104:4000/select`, {
+    Axios.post(`http://${IP}:4000/select`, {
       route: sRoute,
     })
       .then(res => {
@@ -137,12 +137,12 @@ export default class SelectRoute extends React.Component {
                     <View>
                       {this.state.shopselect == shop.shop ? (
                         <TouchableOpacity key={shop._id}>
-                          <View
-                            style={{
-                              flex: 1,
-                              flexDirection: 'row',
-                              borderWidth: 1,
-                              borderColor: 'white',
+                          <View 
+                          style={{
+                            flex: 1,
+                            flexDirection: 'row',
+                            borderWidth: 1,
+                            borderColor: 'white',
                             }}>
                             <Text key={index} style={{margin: 5, flex: 1}}>
                               {shop.shop}
@@ -154,6 +154,7 @@ export default class SelectRoute extends React.Component {
                               key={index}
                             />
                           </View>
+                          
                         </TouchableOpacity>
                       ) : (
                         <TouchableOpacity
@@ -162,6 +163,7 @@ export default class SelectRoute extends React.Component {
                             this.setState({
                               shopselect: shop.shop,
                               custadd: shop.area,
+                              shopemail:shop.email
                             });
                           }}>
                           <View
@@ -225,10 +227,12 @@ export default class SelectRoute extends React.Component {
       var customer = this.state.shopselect;
       var custadd = this.state.custadd;
       var sRoute = this.state.sRoute;
+      var custemail=this.state.shopemail;
       var customeradd = this.props.navigation.navigate('SalesInvoice', {
         custName: customer,
         custAddress: custadd,
         custRoute: sRoute,
+        custEmail:custemail,
       });
     }
   };
