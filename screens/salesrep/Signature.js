@@ -13,12 +13,12 @@ class Signature extends Component {
       order: {},
     };
   }
-  async componentDidMount() {
+  componentDidMount=async ()=> {
     this.setState({
       order: JSON.stringify(this.props.navigation.getParam('id')),
     });
   }
-
+  
   static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
   render() {
     const {navigate} = this.props.navigation;
@@ -106,7 +106,10 @@ class Signature extends Component {
     console.log('dragged');
   }
   nextPage = () => {
-    this.props.navigation.navigate('SubmitOrder');
+    this.props.navigation.navigate('SubmitOrder',{
+      order:this.props.navigation.state.params.order,
+      custEmail:this.props.navigation.state.params.custEmail,
+    });
   };
 }
 

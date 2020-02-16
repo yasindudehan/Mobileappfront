@@ -85,12 +85,12 @@ export default class LoginScreen extends Component {
       alert('Wrong password');
     }
   }; */
-   onSign = e => {
+   onSign = async () => {
     const userdata = {
       username: this.state.userId,
       password: this.state.password,
     };
-    Axios.post(`http://${IP}:4000/login/signIn`, userdata).then(
+    Axios.post(`http://${await IP}:4000/login/signIn`, userdata).then(
       res => {
         if (res.status === 200 && res.data.repordist==="0") {
           AsyncStorage.setItem('logged', '1');
@@ -106,7 +106,7 @@ export default class LoginScreen extends Component {
         }
       }
     ).catch(err=>{
-      if(err.response.data.incorrect)
+      if(err.response.data && err.response.data.incorrect)
         alert(err.response.data.incorrect);
     })
   };

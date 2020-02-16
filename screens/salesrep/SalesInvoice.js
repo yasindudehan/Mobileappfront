@@ -65,10 +65,11 @@ class SalesInvoice extends React.Component {
       isLoaded: false,
     };
   }
+  
   componentDidMount  =async ()=> {
     const username=await AsyncStorage.getItem('username');
     this.setState({username:username});
-    Axios.get(`http://${IP}:4000/product`)
+    Axios.get(`http://${await IP}:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -83,8 +84,7 @@ class SalesInvoice extends React.Component {
         this.props.navigation.getParam('custAddress'),      
       CustomerName: this.props.navigation.getParam('custName'),
     });
-  };
-  async UNSAFE_componentWillMount() {
+
     var that = this;
     //Checking for the permission just after component loaded
 
@@ -115,7 +115,39 @@ class SalesInvoice extends React.Component {
       }
       requestLocationPermission();
     }
-  }
+  };
+  /* async UNSAFE_componentWillMount() {
+    var that = this;
+    //Checking for the permission just after component loaded
+
+    if (Platform.OS === 'ios') {
+      this.callLocation(that);
+    } else {
+      async function requestLocationPermission() {
+        try {
+          const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            {
+              title: 'Location Access Required',
+              message: 'This App needs to Access your location',
+            },
+          );
+
+          if (true) {
+            //To Check, If Permission is granted
+
+            that.callLocation(that);
+          } else {
+            alert('Permission Denied');
+          }
+        } catch (err) {
+          alert('err', err);
+          console.warn(err);
+        }
+      }
+      requestLocationPermission();
+    }
+  } */
 
   callLocation(that) {
     //alert("callLocation Called");
@@ -577,7 +609,7 @@ class SalesInvoice extends React.Component {
       },
       totalValue: this.state.totalValue,
     };
-    if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
+     if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
       Axios.post(`http://${IP}:4000/order/submit`, order)
         .then(response => {
           console.log('', response);
@@ -585,13 +617,15 @@ class SalesInvoice extends React.Component {
         })
         .catch(err => {
           console.log(err);
-        });
+        }); 
       var id = {};
-
       this.props.navigation.navigate('Signature', {
         id: this.quts_arr,
+        order:order,
+        custEmail:this.props.navigation.state.params.custEmail,
+        
       });
-    }
+    } 
   };
   qutchange = (e, i) => {
     quts_arr[[i]] = e;
