@@ -11,6 +11,7 @@ import {
   Platform,
   ActivityIndicator,
   AsyncStorage,
+  TouchableHighlightBase,
 } from 'react-native';
 import {
   Container,
@@ -32,23 +33,22 @@ import {
   Cols,
   Cell,
 } from 'react-native-table-component';
+
 import Geolocation from '@react-native-community/geolocation';
 import Date from './Date';
 import {green} from 'ansi-colors';
 import { IP} from 'react-native-dotenv';
 
 // create a component
-var len=24;
 var quts_arr = [];
 var rate_arr = [];
 var price_arr = [];
-//var total = 0;
+var total = 0;
 class SalesInvoice extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username:null,
       qut: 0,
       quts: [],
       price: 0,
@@ -56,20 +56,26 @@ class SalesInvoice extends React.Component {
       rates: [],
       totalValue: 0,
       total: '0',
-      CustomerName:null,
-      CustomerAdd: null,
+      CustomerName: '',
+      CustomerAdd: '',
       products: [],
       pay_type: '/',
       currentLongitude: 'un',
       currentLatitude: 'un',
       isLoaded: false,
+      username: '',
+      disName: '',
+      stockId: '',
+      Id: 0,
+      stockBalance: [],
     };
   }
-  
-  componentDidMount  =async ()=> {
-    const username=await AsyncStorage.getItem('username');
-    this.setState({username:username});
-    Axios.get(`http://${await IP}:4000/product`)
+  componentDidMount = async () => {
+    const username = await AsyncStorage.getItem('username');
+    const disName = await AsyncStorage.getItem('distName');
+    this.setState({username: username});
+    this.setState({disName: disName});
+    Axios.get(`http://192.168.8.101:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -81,42 +87,19 @@ class SalesInvoice extends React.Component {
       });
     this.setState({
       CustomerAdd: 
-        this.props.navigation.getParam('custAddress'),      
+        this.props.navigation.getParam('custAddress'),
+      
       CustomerName: this.props.navigation.getParam('custName'),
     });
-
-    var that = this;
-    //Checking for the permission just after component loaded
-
-    if (Platform.OS === 'ios') {
-      this.callLocation(that);
-    } else {
-      async function requestLocationPermission() {
-        try {
-          const granted = await PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            {
-              title: 'Location Access Required',
-              message: 'This App needs to Access your location',
-            },
-          );
-
-          if (true) {
-            //To Check, If Permission is granted
-
-            that.callLocation(that);
-          } else {
-            alert('Permission Denied');
-          }
-        } catch (err) {
-          alert('err', err);
-          console.warn(err);
-        }
-      }
-      requestLocationPermission();
-    }
+    Axios.get(`http://192.168.8.101:4000/order/getId`).then(json => {
+      this.setState({
+        stockId: json.data[0],
+      });
+      const stockId = this.state.stockId._id;
+      this.setState({Id: stockId});
+    });
   };
-  /* async UNSAFE_componentWillMount() {
+  async UNSAFE_componentWillMount() {
     var that = this;
     //Checking for the permission just after component loaded
 
@@ -147,7 +130,7 @@ class SalesInvoice extends React.Component {
       }
       requestLocationPermission();
     }
-  } */
+  }
 
   callLocation(that) {
     //alert("callLocation Called");
@@ -188,7 +171,7 @@ class SalesInvoice extends React.Component {
       return (
         <View>
           <ActivityIndicator />
-          <Text>{this.currentLatitude}</Text>
+          <Text>....</Text>
         </View>
       );
     } else {
@@ -215,6 +198,10 @@ class SalesInvoice extends React.Component {
                 />
                 <Row
                   data={['Customer Address :', this.state.CustomerAdd]}
+                  textStyle={{fontSize: 20}}
+                />
+                <Row
+                  data={['Sales Rep  Name :', this.state.username]}
                   textStyle={{fontSize: 20}}
                 />
               </Table>
@@ -505,6 +492,7 @@ class SalesInvoice extends React.Component {
 
     const order = {
       salesrepName: this.state.username,
+      distName: this.state.disName,
       CustomerAddress: this.state.CustomerAdd,
       pay_type: this.state.pay_type,
       Latitude: this.state.currentLatitude,
@@ -609,23 +597,33 @@ class SalesInvoice extends React.Component {
       },
       totalValue: this.state.totalValue,
     };
-     if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
-      Axios.post(`http://${IP}:4000/order/submit`, order)
+
+    if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
+      Axios.post(`http://192.168.8.101:4000/order/submit`, order)
         .then(response => {
           console.log('', response);
           console.log(response.data);
         })
         .catch(err => {
           console.log(err);
-        }); 
-      var id = {};
+        });
+      /* Axios.put(
+        `http://192.19:4000/stock/getstock/${this.state.Id}`,
+        order,
+      )
+        .then(response => {
+          console.log('', response);
+        })
+        .catch(err => {
+          console.warn(err);
+        }); */
+
       this.props.navigation.navigate('Signature', {
-        id: this.quts_arr,
+        id: Object.assign({}, this.state.quts),
         order:order,
         custEmail:this.props.navigation.state.params.custEmail,
-        
       });
-    } 
+    }
   };
   qutchange = (e, i) => {
     quts_arr[[i]] = e;
@@ -635,30 +633,34 @@ class SalesInvoice extends React.Component {
     this.setState({rates: rate_arr});
     this.setState({quts: quts_arr});
     this.setState({prices: price_arr});
-    var total=0;
-    {Object.keys(this.state.products).map((p, i) => {
-      if(price_arr[[ this.state.products[p].name +this.state.products[p].weight]]!==undefined){
-        total = total + price_arr[[ this.state.products[p].name +this.state.products[p].weight]];
-      }
-     // }
-      
-    })};
+    var total = 0;
+    {
+      Object.keys(this.state.products).map((p, i) => {
+        if (
+          price_arr[
+            [this.state.products[p].name + this.state.products[p].weight]
+          ] !== undefined
+        ) {
+          total =
+            total +
+            price_arr[
+              [this.state.products[p].name + this.state.products[p].weight]
+            ];
+        }
+        // }
+      });
+    }
     this.setState({totalValue: total});
     //console.warn(this.state.totalValue);
     //console.warn(price_arr[[i]]);
     // this.setState({[quts[i]]: e});
     //  console.warn(totalvalue);
     /* total = total + price_arr[[i]];
-    this.setState({totalValue: total}) */;
+    this.setState({totalValue: total}) */
   };
- /*  totalValue(){
-    let total=0;
-    for(let i = 0; i < this.state.products.length; i++){
-      total = total + price_arr[[i]];
-      
-    }
-    this.setState({totalValue: total}) 
-  }; */
+  totalValue = () => {
+    console.warn('fjsfsdkjfsjl');
+  };
 }
 
 // define your styles

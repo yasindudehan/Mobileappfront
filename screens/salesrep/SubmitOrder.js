@@ -40,7 +40,7 @@ class SubmitOrder extends Component {
      
   };
   async componentDidMount() {
-    Axios.get(`http://${await IP}:4000/product`)
+    Axios.get(`http://192.168.8.101:4000/product`)
     .then(json => {
       this.setState({
         products: json.data[0],
@@ -406,7 +406,7 @@ class SubmitOrder extends Component {
                   </tr>
                </table>
                <br />
-               <img src="http://${IP}:4000/image/getimage?repName=${this.props.navigation.state.params.order.salesrepName}" style="width:100%; max-width:156px;" />
+               <img src="http://192.168.8.101:4000/image/getimage?repName=${this.props.navigation.state.params.order.salesrepName}" style="width:100%; max-width:156px;" />
                <p class="justify-left">Sales Representative Signature</p>
 
             </div>

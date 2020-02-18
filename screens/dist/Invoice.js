@@ -30,6 +30,7 @@ import {
   Cols,
   Cell,
 } from 'react-native-table-component';
+import { IP} from 'react-native-dotenv';
 
 import Date from './Date';
 import {green} from 'ansi-colors';
@@ -58,24 +59,30 @@ class SalesInvoice extends React.Component {
       currentLatitude: 'un',
       isLoaded: false,
       username: '',
+      distInfo: [],
       repName: '',
     };
   }
   componentDidMount = async () => {
     const username = await AsyncStorage.getItem('username');
     this.setState({username: username});
-    Axios.post('http://192.168.1.104:4000/select', {
+    Axios.post(`http://192.168.8.101:4000/login/dist`, {
       userName: username,
     })
       .then(res => {
         this.setState({
-          repName: res.data,
+          distInfo: res.data[0],
         });
+        // console.warn(this.state.distInfo.salesrep);
+        const repName = this.state.distInfo.salesrep;
+        this.setState({repName: repName});
+        console.warn(this.state.repName);
       })
       .catch(error => {
         console.log(error);
       });
-    Axios.get('http://192.168.1.104:4000/product')
+
+    Axios.get(`http://192.168.8.101:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -86,10 +93,8 @@ class SalesInvoice extends React.Component {
         console.error(error);
       });
     this.setState({
-      CustomerAdd: JSON.stringify(
-        this.props.navigation.getParam('custAddress'),
-      ),
-      CustomerName: JSON.stringify(this.props.navigation.getParam('custName')),
+      CustomerAdd: this.props.navigation.getParam('custAddress'),
+      CustomerName: this.props.navigation.getParam('custName'),
     });
   };
   static navigationOptions = {headerStyle: {backgroundColor: '#005f63'}};
@@ -383,9 +388,10 @@ class SalesInvoice extends React.Component {
     }
   }
   nextPage = e => {
+    console.warn(this.state.quts['Tea bulk Bag Type50kg']);
     e.preventDefault();
     const order = {
-      repname: 'geesa',
+      repname: this.state.repName,
       distname: this.state.username,
 
       teapouch20: {
@@ -486,7 +492,7 @@ class SalesInvoice extends React.Component {
       },
       totalValue: this.state.totalValue,
     };
-    Axios.post('http://192.168.1.104:4000/stock/submit', order)
+    Axios.post(`http://192.168.8.101:4000/stock/submit`, order)
       .then(response => {
         console.log('', response);
         console.log(response.data);
@@ -494,7 +500,7 @@ class SalesInvoice extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    Axios.post('http://192.168.1.104:4000/stock/stocksubmit', order)
+    Axios.post(`http://192.168.8.101:4000/stock/stocksubmit`, order)
       .then(response => {
         console.log('', response);
         console.log(response.data);

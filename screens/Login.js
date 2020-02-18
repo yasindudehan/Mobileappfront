@@ -90,7 +90,7 @@ export default class LoginScreen extends Component {
       username: this.state.userId,
       password: this.state.password,
     };
-    Axios.post(`http://${await IP}:4000/login/signIn`, userdata).then(
+    Axios.post(`http://192.168.8.101:4000/login/signIn`, userdata).then(
       res => {
         if (res.status === 200 && res.data.repordist==="0") {
           AsyncStorage.setItem('logged', '1');

@@ -17,7 +17,7 @@ class Signature extends Component {
   }
   componentDidMount=async ()=> {
     this.setState({
-      order: JSON.stringify(this.props.navigation.getParam('id')),
+      order: this.props.navigation.getParam('id'),
     });
   }
   
@@ -97,7 +97,7 @@ class Signature extends Component {
     this.refs['sign'].resetImage();
   }
 
-  _onSaveEvent = result => {/* 
+  _onSaveEvent = async(result) => {/* 
     const dirs = RNFetchBlob.fs.dirs;
     var path = dirs.DCIMDir + "/sign.png";  */   
     //RNFetchBlob.fs.writeFile(path, result.encoded, 'base64');
@@ -107,7 +107,7 @@ class Signature extends Component {
       imageExt:"png",
       repName:this.props.navigation.state.params.order.salesrepName
     };
-    Axios.post(`http://${IP}:4000/image/submit`,userdata)
+    Axios.post(`http://192.168.8.101:4000/image/submit`,userdata)
     .catch(error => {
       console.error(error);
     });
