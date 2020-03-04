@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import SignatureCapture from 'react-native-signature-capture';
 import {Container, Content, Card} from 'native-base';
 import Axios from 'axios';
-import { IP} from 'react-native-dotenv';
+//;
 // create a component
 class Signature extends Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class Signature extends Component {
       imageExt:"png",
       repName:this.props.navigation.state.params.order.salesrepName
     };
-    Axios.post(`http://192.168.8.101:4000/image/submit`,userdata)
+    Axios.post(`http://192.168.1.105:4000/image/submit`,userdata)
     .catch(error => {
       console.error(error);
     });

@@ -13,6 +13,7 @@ import {
   ScrollView,
   SafeAreaView,
   AsyncStorage,
+  RefreshControl,
 } from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
 import Axios from 'axios';
@@ -45,7 +46,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import Date from './Date';
 import {TabNavigator} from 'react-navigation';
 import Geolocation from '@react-native-community/geolocation';
-import { IP} from 'react-native-dotenv';
+//;
 
 var array1 = [];
 var array2 = [];
@@ -67,6 +68,7 @@ export default class StockBalanceScreen extends Component {
       data: [],
       stock: [],
       isLoading: false,
+      rerefreshing: false,
     };
   }
 
@@ -74,7 +76,7 @@ export default class StockBalanceScreen extends Component {
     const repName = await AsyncStorage.getItem('username');
 
     this.setState({repName: repName});
-    await Axios.post(`http://192.168.8.101:4000/login/salesrep`, {
+    await Axios.post(`http://192.168.1.105:4000/login/salesrep`, {
       userName: repName,
     }).then(json => {
       this.setState({data: json.data[0]});
@@ -86,7 +88,7 @@ export default class StockBalanceScreen extends Component {
     const distname = this.state.repInfo.distributor;
     AsyncStorage.setItem('distName', this.state.repInfo.distributor);
     this.setState({distName: distname});
-    await Axios.post(`http://192.168.8.101:4000/stock/getstock`, {
+    await Axios.post(`http://192.168.1.105:4000/stock/getstock`, {
       repname: repName,
       distname: distname,
     }).then(json => {
@@ -104,7 +106,7 @@ export default class StockBalanceScreen extends Component {
         this.setState({isLoading: true});
       }
     });
-    await Axios.post(`http://192.168.8.101:4000/stock/stock`, {
+    await Axios.post(`http://192.168.1.105:4000/stock/stock`, {
       repname: repName,
       distname: distname,
     }).then(json => {
@@ -135,6 +137,12 @@ export default class StockBalanceScreen extends Component {
         console.error(error);
       });*/
   };
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    fetchData().then(() => {
+      this.setState({refreshing: false});
+    });
+  }
   render() {
     const {
       products,
@@ -158,7 +166,13 @@ export default class StockBalanceScreen extends Component {
       );
     } else {
       return (
-        <View style={styles.container}>
+        <View style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }>
           <Container style={styles.container}>
             <Content padder>
               {Object.keys(stock).map((item, i) => {

@@ -8,7 +8,7 @@ var RNFS = require("react-native-fs");
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 const today = new Date();
 import Axios from 'axios';
-import { IP} from 'react-native-dotenv';
+//;
 import { NavigationActions,StackActions  } from 'react-navigation';
 // create a component
 /* const customer_gmail='mailto:ruwanwellayasindu@gmail.com';
@@ -40,7 +40,7 @@ class SubmitOrder extends Component {
      
   };
   async componentDidMount() {
-    Axios.get(`http://192.168.8.101:4000/product`)
+    Axios.get(`http://192.168.1.105:4000/product`)
     .then(json => {
       this.setState({
         products: json.data[0],
@@ -406,7 +406,7 @@ class SubmitOrder extends Component {
                   </tr>
                </table>
                <br />
-               <img src="http://192.168.8.101:4000/image/getimage?repName=${this.props.navigation.state.params.order.salesrepName}" style="width:100%; max-width:156px;" />
+               <img src="http://192.168.1.105:4000/image/getimage?repName=${this.props.navigation.state.params.order.salesrepName}" style="width:100%; max-width:156px;" />
                <p class="justify-left">Sales Representative Signature</p>
 
             </div>

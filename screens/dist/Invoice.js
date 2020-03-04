@@ -30,7 +30,7 @@ import {
   Cols,
   Cell,
 } from 'react-native-table-component';
-import { IP} from 'react-native-dotenv';
+//;
 
 import Date from './Date';
 import {green} from 'ansi-colors';
@@ -66,7 +66,7 @@ class SalesInvoice extends React.Component {
   componentDidMount = async () => {
     const username = await AsyncStorage.getItem('username');
     this.setState({username: username});
-    Axios.post(`http://192.168.8.101:4000/login/dist`, {
+    Axios.post(`http://192.168.1.105:4000/login/dist`, {
       userName: username,
     })
       .then(res => {
@@ -82,7 +82,7 @@ class SalesInvoice extends React.Component {
         console.log(error);
       });
 
-    Axios.get(`http://192.168.8.101:4000/product`)
+    Axios.get(`http://192.168.1.105:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -133,7 +133,7 @@ class SalesInvoice extends React.Component {
                   textStyle={{fontSize: 20}}
                 />
               </Table>
-              <Table>
+           
                 <View
                   style={{
                     flex: 3,
@@ -319,7 +319,7 @@ class SalesInvoice extends React.Component {
                     </View>
                   );
                 })}
-              </Table>
+             
 
               <Table>
                 <View
@@ -370,6 +370,8 @@ class SalesInvoice extends React.Component {
               borderRadius: 20,
               borderWidth: 2,
               borderColor: '#006064',
+            
+                 
             }}>
             <Text
               style={{
@@ -492,7 +494,7 @@ class SalesInvoice extends React.Component {
       },
       totalValue: this.state.totalValue,
     };
-    Axios.post(`http://192.168.8.101:4000/stock/submit`, order)
+    Axios.post(`http://192.168.1.105:4000/stock/submit`, order)
       .then(response => {
         console.log('', response);
         console.log(response.data);
@@ -500,7 +502,7 @@ class SalesInvoice extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    Axios.post(`http://192.168.8.101:4000/stock/stocksubmit`, order)
+    Axios.post(`http://192.168.1.105:4000/stock/stocksubmit`, order)
       .then(response => {
         console.log('', response);
         console.log(response.data);

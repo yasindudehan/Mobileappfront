@@ -27,9 +27,10 @@ import {
   Option,
   Image,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import {FlatList, TextInput} from 'react-native-gesture-handler';
-import { IP} from 'react-native-dotenv';
+//;
 export default class SelectRoute extends React.Component {
   static navigationOptions = {headerStyle: {backgroundColor: '#006064'}};
   constructor(props) {
@@ -43,12 +44,13 @@ export default class SelectRoute extends React.Component {
       shopselect: '/',
       isLoding: false,
       custadd: '/',
-      shopemail:""
+      shopemail:"",
+      refreshing: false,
     };
   }
 
   async componentDidMount() {
-    Axios.get(`http://192.168.8.101:4000/select`)
+    Axios.get(`http://192.168.1.105:4000/select`)
       .then(res => {
         this.setState({
           routes: res.data,
@@ -66,7 +68,7 @@ export default class SelectRoute extends React.Component {
   }
   updateRoute = async(sRoute) => {
     this.setState({sRoute: sRoute});
-    Axios.post(`http://192.168.8.101:4000/select`, {
+    Axios.post(`http://192.168.1.105:4000/select`, {
       route: sRoute,
     })
       .then(res => {
@@ -77,6 +79,12 @@ export default class SelectRoute extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  };
+  _onRefresh = () => {
+    this.setState({refreshing: true});
+    fetchData().then(() => {
+      this.setState({refreshing: false});
+    });
   };
 
   render() {
@@ -96,7 +104,13 @@ export default class SelectRoute extends React.Component {
       console.log(newArray);
 
       return (
-        <Container style={{backgroundColor: '#00363a'}}>
+       
+        <Container style={{backgroundColor: '#00363a'}}
+        
+        
+        >
+       
+    
           <Text
             style={{marginLeft: 5, fontFamily: 'Cochin', fontWeight: 'bold'}}>
             Select Route
@@ -104,6 +118,7 @@ export default class SelectRoute extends React.Component {
 
           <Card style={{backgroundColor: '#428e92'}}>
             <Form>
+           
               <Picker
                 style={{witdth: 0}}
                 mode="dropdown"
@@ -192,11 +207,12 @@ export default class SelectRoute extends React.Component {
             </Card>
           </Content>
           <Content>
+            
             <TouchableOpacity
               style={{
                 backgroundColor: '#00363a',
                 margin: 20,
-                marginLeft: 200,
+                marginLeft: 190,
                 width: 100,
                 height: 50,
                 borderRadius: 20,
@@ -216,6 +232,7 @@ export default class SelectRoute extends React.Component {
                 Next
               </Text>
             </TouchableOpacity>
+           
           </Content>
         </Container>
       );

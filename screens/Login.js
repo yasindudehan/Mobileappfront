@@ -8,9 +8,10 @@ import {
   ImageBackground,
   AsyncStorage,
   StatusBar,
+  ActivityIndicator
 } from 'react-native';
 import {Container, Header, Content, Text, Button, Toast} from 'native-base';
-import { IP} from 'react-native-dotenv';
+//;
 
 /* const Info = {
   userId: 'kasun',
@@ -27,11 +28,11 @@ export default class LoginScreen extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = {userId: '', password: ''};
+    this.state = {userId: '', password: '',isLoading:true};
   }
  /*  async componentDidMount() {
     try{
-    await Axios(`http://${IP}:4000/login/signIn`, {
+    await Axios(`http://192.168.1.105:4000/login/signIn`, {
       username: this.state.userId,
       password: this.state.password,
     })
@@ -90,7 +91,8 @@ export default class LoginScreen extends Component {
       username: this.state.userId,
       password: this.state.password,
     };
-    Axios.post(`http://192.168.8.101:4000/login/signIn`, userdata).then(
+    Axios.post(`http://192.168.1.105:4000/login/signIn`, userdata).then(
+          
       res => {
         if (res.status === 200 && res.data.repordist==="0") {
           AsyncStorage.setItem('logged', '1');

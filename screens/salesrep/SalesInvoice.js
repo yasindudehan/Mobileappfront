@@ -37,7 +37,7 @@ import {
 import Geolocation from '@react-native-community/geolocation';
 import Date from './Date';
 import {green} from 'ansi-colors';
-import { IP} from 'react-native-dotenv';
+//;
 
 // create a component
 var quts_arr = [];
@@ -75,7 +75,7 @@ class SalesInvoice extends React.Component {
     const disName = await AsyncStorage.getItem('distName');
     this.setState({username: username});
     this.setState({disName: disName});
-    Axios.get(`http://192.168.8.101:4000/product`)
+    Axios.get(`http://192.168.1.105:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -91,7 +91,7 @@ class SalesInvoice extends React.Component {
       
       CustomerName: this.props.navigation.getParam('custName'),
     });
-    Axios.get(`http://192.168.8.101:4000/order/getId`).then(json => {
+    Axios.get(`http://192.168.1.105:4000/order/getId`).then(json => {
       this.setState({
         stockId: json.data[0],
       });
@@ -500,106 +500,106 @@ class SalesInvoice extends React.Component {
       customerName: this.state.CustomerName,
 
       teapouch20: {
-        qut: this.state.quts['tea pouch20g'],
+        qut: parseInt(this.state.quts['tea pouch20g']),
         price: this.state.prices['tea pouch20g'],
       },
       teapouch50: {
-        qut: this.state.quts['tea pouch50g'],
+        qut: parseInt(this.state.quts['tea pouch50g']),
         price: this.state.prices['tea pouch50g'],
       },
       teapouch100: {
-        qut: this.state.quts['Tea pouch100g'],
+        qut: parseInt(this.state.quts['Tea pouch100g']),
         price: this.state.prices['Tea pouch100g'],
       },
       teapouch200: {
-        qut: this.state.quts['Tea pouch200g'],
+        qut: parseInt(this.state.quts['Tea pouch200g']),
         price: this.state.prices['Tea pouch200g'],
       },
       teapouch400: {
-        qut: this.state.quts['Tea pouch400g'],
+        qut: parseInt(this.state.quts['Tea pouch400g']),
         price: this.state.prices['Tea pouch400g'],
       },
       teapouch1kg1: {
-        qut: this.state.quts['Tea pouch Premium Quality1kg'],
+        qut: parseInt(this.state.quts['Tea pouch Premium Quality1kg']),
         price: this.state.prices['Tea pouch Premium Quality1kg'],
       },
       teapouch1kg2: {
-        qut: this.state.quts['Tea pouch Export Quality1kg'],
+        qut: parseInt(this.state.quts['Tea pouch Export Quality1kg']),
         price: this.state.prices['Tea pouch Export Quality1kg'],
       },
       teapouch1kg3: {
-        qut: this.state.quts['Tea pouch BOPF Quality1kg'],
+        qut: parseInt(this.state.quts['Tea pouch BOPF Quality1kg']),
         price: this.state.prices['Tea pouch BOPF Quality1kg'],
       },
       teapouch1kg4: {
-        qut: this.state.quts['Tea pouch Catering Pack1kg'],
+        qut: parseInt(this.state.quts['Tea pouch Catering Pack1kg']),
         price: this.state.prices['Tea pouch Catering Pack1kg'],
       },
       teabag1: {
-        qut: this.state.quts['Teabag Packet Type25pack'],
+        qut: parseInt(this.state.quts['Teabag Packet Type25pack']),
         price: this.state.prices['Teabag Packet Type25pack'],
       },
       teabag2: {
-        qut: this.state.quts['Teabag Packet Type50pack'],
+        qut: parseInt(this.state.quts['Teabag Packet Type50pack']),
         price: this.state.prices['Teabag Packet Type50pack'],
       },
       teabag3: {
-        qut: this.state.quts['Teabag Packet Type100pack'],
+        qut: parseInt(this.state.quts['Teabag Packet Type100pack']),
         price: this.state.prices['Teabag Packet Type100pack'],
       },
       teasachet1: {
-        qut: this.state.quts['Tea sachet Catering Type250Bag'],
+        qut: parseInt(this.state.quts['Tea sachet Catering Type250Bag']),
         price: this.state.prices['Tea sachet Catering Type250Bag'],
       },
       teasachet2: {
-        qut: this.state.quts['Tea sachet Catering Type500Bag'],
+        qut: parseInt(this.state.quts['Tea sachet Catering Type500Bag']),
         price: this.state.prices['Tea sachet Catering Type500Bag'],
       },
       teasachet3: {
-        qut: this.state.quts['Tea sachet Catering Type1000Bag'],
+        qut: parseInt(this.state.quts['Tea sachet Catering Type1000Bag']),
         price: this.state.prices['Tea sachet Catering Type1000Bag'],
       },
       teabulk1: {
-        qut: this.state.quts['Tea bulk Premium Quality5kg'],
+        qut: parseInt(this.state.quts['Tea bulk Premium Quality5kg']),
         price: this.state.prices['Tea bulk Premium Quality5kg'],
       },
       teabulk2: {
-        qut: this.state.quts['Tea bulk Export Quality5kg'],
+        qut: parseInt(this.state.quts['Tea bulk Export Quality5kg']),
         price: this.state.prices['Tea bulk Export Quality5kg'],
       },
       teabulk3: {
-        qut: this.state.quts['Tea bulk Catering Quality5kg'],
+        qut: parseInt(this.state.quts['Tea bulk Catering Quality5kg']),
         price: this.state.prices['Tea bulk Catering Quality5kg'],
       },
       teabulk4: {
-        qut: this.state.quts['Tea bulk Export Quality25kg'],
+        qut: parseInt(this.state.quts['Tea bulk Export Quality25kg']),
         price: this.state.prices['Tea bulk Export Quality25kg'],
       },
       teabulk5: {
-        qut: this.state.quts['Tea bulk Tea Box25kg'],
+        qut: parseInt(this.state.quts['Tea bulk Tea Box25kg']),
         price: this.state.prices['Tea bulk Tea Box25kg'],
       },
       teabulk6: {
-        qut: this.state.quts['Tea bulk Bag Type50kg'],
+        qut: parseInt(this.state.quts['Tea bulk Bag Type50kg']),
         price: this.state.prices['Tea bulk Bag Type50kg'],
       },
       teabottle: {
-        qut: this.state.quts['Tea bottle250g'],
+        qut: parseInt(this.state.quts['Tea bottle250g']),
         price: this.state.prices['Tea bottle250g'],
       },
       teabasket1: {
-        qut: this.state.quts['Tea Basket PF-l4.5kg'],
+        qut: parseInt(this.state.quts['Tea Basket PF-l4.5kg']),
         price: this.state.prices['Tea Basket PF-l4.5kg'],
       },
       teabasket2: {
-        qut: this.state.quts['Tea Basket BP-l4kg'],
+        qut: parseInt(this.state.quts['Tea Basket BP-l4kg']),
         price: this.state.prices['Tea Basket BP-l4kg'],
       },
       totalValue: this.state.totalValue,
     };
 
     if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
-      Axios.post(`http://192.168.8.101:4000/order/submit`, order)
+      Axios.post(`http://192.168.1.105:4000/order/submit`, order)
         .then(response => {
           console.log('', response);
           console.log(response.data);
@@ -607,8 +607,8 @@ class SalesInvoice extends React.Component {
         .catch(err => {
           console.log(err);
         });
-      /* Axios.put(
-        `http://192.19:4000/stock/getstock/${this.state.Id}`,
+       Axios.put(
+        `http://192.168.1.105:4000/stock/getstock/${this.state.Id}`,
         order,
       )
         .then(response => {
@@ -616,7 +616,7 @@ class SalesInvoice extends React.Component {
         })
         .catch(err => {
           console.warn(err);
-        }); */
+        });
 
       this.props.navigation.navigate('Signature', {
         id: Object.assign({}, this.state.quts),
