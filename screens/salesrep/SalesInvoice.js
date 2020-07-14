@@ -75,7 +75,7 @@ class SalesInvoice extends React.Component {
     const disName = await AsyncStorage.getItem('distName');
     this.setState({username: username});
     this.setState({disName: disName});
-    Axios.get(`http://192.168.1.105:4000/product`)
+    Axios.get(`http://192.168.1.101:4000/product`)
       .then(json => {
         this.setState({
           isLoaded: true,
@@ -91,7 +91,7 @@ class SalesInvoice extends React.Component {
       
       CustomerName: this.props.navigation.getParam('custName'),
     });
-    Axios.get(`http://192.168.1.105:4000/order/getId`).then(json => {
+    Axios.get(`http://192.168.1.101:4000/order/getId`).then(json => {
       this.setState({
         stockId: json.data[0],
       });
@@ -599,7 +599,7 @@ class SalesInvoice extends React.Component {
     };
 
     if (this.state.pay_type !== '/' && this.state.totalValue !== 0) {
-      Axios.post(`http://192.168.1.105:4000/order/submit`, order)
+      Axios.post(`http://192.168.1.101:4000/order/submit`, order)
         .then(response => {
           console.log('', response);
           console.log(response.data);
@@ -608,7 +608,7 @@ class SalesInvoice extends React.Component {
           console.log(err);
         });
        Axios.put(
-        `http://192.168.1.105:4000/stock/getstock/${this.state.Id}`,
+        `http://192.168.1.101:4000/stock/getstock/${this.state.Id}`,
         order,
       )
         .then(response => {

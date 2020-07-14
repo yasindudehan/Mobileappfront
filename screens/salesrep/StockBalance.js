@@ -76,7 +76,7 @@ export default class StockBalanceScreen extends Component {
     const repName = await AsyncStorage.getItem('username');
 
     this.setState({repName: repName});
-    await Axios.post(`http://192.168.1.105:4000/login/salesrep`, {
+    await Axios.post(`http://192.168.1.101:4000/login/salesrep`, {
       userName: repName,
     }).then(json => {
       this.setState({data: json.data[0]});
@@ -88,7 +88,7 @@ export default class StockBalanceScreen extends Component {
     const distname = this.state.repInfo.distributor;
     AsyncStorage.setItem('distName', this.state.repInfo.distributor);
     this.setState({distName: distname});
-    await Axios.post(`http://192.168.1.105:4000/stock/getstock`, {
+    await Axios.post(`http://192.168.1.101:4000/stock/getstock`, {
       repname: repName,
       distname: distname,
     }).then(json => {
@@ -106,7 +106,7 @@ export default class StockBalanceScreen extends Component {
         this.setState({isLoading: true});
       }
     });
-    await Axios.post(`http://192.168.1.105:4000/stock/stock`, {
+    await Axios.post(`http://192.168.1.101:4000/stock/stock`, {
       repname: repName,
       distname: distname,
     }).then(json => {

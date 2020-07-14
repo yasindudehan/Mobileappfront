@@ -107,7 +107,7 @@ class Signature extends Component {
       imageExt:"png",
       repName:this.props.navigation.state.params.order.salesrepName
     };
-    Axios.post(`http://192.168.1.105:4000/image/submit`,userdata)
+    Axios.post(`http://192.168.1.101:4000/image/submit`,userdata)
     .catch(error => {
       console.error(error);
     });
